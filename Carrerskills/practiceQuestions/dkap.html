@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quant Aptitude – Full Practice Session (275 Qs)</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fcf9f8;
+            --surface: #fff;
+            --surface2: #f6f3f2;
+            --border: #c3c7c8;
+            --border-light: #e1e4e8;
+            --primary: #181f21;
+            --accent: #6C5CE7;
+            --text: #1b1b1c;
+            --muted: #434749;
+            --muted-light: #747879;
+            --correct: #16a34a;
+            --wrong: #ba1a1a;
+            --shadow: 0 4px 20px rgba(24, 31, 33, .05);
+            --sc: #d6e2e6;
+            --sct: #596468;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden
+        }
+
+        .wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 20px
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 20px 24px
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--sc);
+            color: var(--sct);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            margin-bottom: 16px
+        }
+
+        header h1 {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(26px, 5vw, 44px);
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 10px;
+            letter-spacing: -.02em
+        }
+
+        header p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto 24px
+        }
+
+        /* PROGRESS BAR */
+        .prog-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow)
+        }
+
+        .prog-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 600
+        }
+
+        .prog-bar-bg {
+            background: #e5e7eb;
+            border-radius: 9999px;
+            height: 8px;
+            overflow: hidden
+        }
+
+        .prog-bar-fill {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 9999px;
+            transition: width .4s ease;
+            width: 0%
+        }
+
+        /* SCOREBOARD */
+        #scoreboard {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            display: none;
+            box-shadow: var(--shadow)
+        }
+
+        #scoreboard h3 {
+            font-family: 'Source Serif 4', serif;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-light)
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 12px
+        }
+
+        .score-card {
+            background: var(--surface2);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            border: 1px solid var(--border-light)
+        }
+
+        .score-card .num {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: 'Source Serif 4', serif
+        }
+
+        .score-card .lbl {
+            font-size: 11px;
+            color: var(--muted-light);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin-top: 4px;
+            font-weight: 500
+        }
+
+        .sc-correct .num {
+            color: var(--correct)
+        }
+
+        .sc-wrong .num {
+            color: var(--wrong)
+        }
+
+        /* TOPIC NAV */
+        .topic-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            justify-content: center
+        }
+
+        .topic-btn {
+            background: #eae7e7;
+            border: 1px solid transparent;
+            color: var(--muted);
+            border-radius: 9999px;
+            padding: 7px 18px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap
+        }
+
+        .topic-btn:hover {
+            background: var(--border);
+            color: var(--primary)
+        }
+
+        .topic-btn.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(24, 31, 33, .15)
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        .filter-bar span {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            border-radius: 9999px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary)
+        }
+
+        /* SECTION */
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: border-color .3s
+        }
+
+        .section:hover {
+            border-color: #a0a4a5
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 22px;
+            cursor: pointer;
+            user-select: none
+        }
+
+        .section-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0
+        }
+
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 17px;
+            font-weight: 600;
+            flex: 1;
+            color: var(--primary)
+        }
+
+        .section-meta {
+            font-size: 12px;
+            color: var(--muted-light);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 3px;
+            font-weight: 500
+        }
+
+        .section-toggle {
+            font-size: 16px;
+            color: var(--muted-light);
+            transition: transform .3s
+        }
+
+        .section.open .section-toggle {
+            transform: rotate(180deg)
+        }
+
+        .section-body {
+            display: none;
+            padding: 0 22px 22px
+        }
+
+        .section.open .section-body {
+            display: block
+        }
+
+        /* QUESTION CARD */
+        .question-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+            transition: border-color .2s, box-shadow .2s;
+            box-shadow: var(--shadow)
+        }
+
+        .question-card:hover {
+            box-shadow: 0 6px 24px rgba(24, 31, 33, .08)
+        }
+
+        .question-card.correct {
+            border-color: var(--correct) !important;
+            background: #f0fdf4 !important
+        }
+
+        .question-card.wrong {
+            border-color: var(--wrong) !important;
+            background: #fef2f2 !important
+        }
+
+        .q-num {
+            font-size: 12px;
+            color: var(--primary);
+            letter-spacing: .03em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600
+        }
+
+        .diff {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .07em
+        }
+
+        .easy {
+            background: #dcfce7;
+            color: #166534
+        }
+
+        .medium {
+            background: #fef3c7;
+            color: #92400e
+        }
+
+        .hard {
+            background: #fecaca;
+            color: #991b1b
+        }
+
+        .q-text {
+            font-family: 'Source Serif 4', serif;
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 14px;
+            font-weight: 500;
+            color: var(--primary)
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px
+        }
+
+        @media(max-width:560px) {
+            .options {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .opt {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 13px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            transition: all .2s;
+            font-family: 'Inter', sans-serif
+        }
+
+        .opt:hover {
+            border-color: var(--primary);
+            background: var(--surface2)
+        }
+
+        .opt.selected {
+            border-color: var(--primary);
+            background: var(--surface2)
+        }
+
+        .opt.show-correct {
+            border-color: var(--correct) !important;
+            background: #f0fdf4 !important;
+            color: #166534 !important
+        }
+
+        .opt.show-wrong {
+            border-color: var(--wrong) !important;
+            background: #fef2f2 !important;
+            color: #991b1b !important
+        }
+
+        .opt-label {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0
+        }
+
+        .check-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: opacity .2s
+        }
+
+        .check-btn:disabled {
+            opacity: .35;
+            cursor: not-allowed
+        }
+
+        .answer-reveal {
+            display: none;
+            margin-top: 12px;
+            background: #f8fafc;
+            border-left: 3px solid var(--correct);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 15px;
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--muted)
+        }
+
+        .answer-reveal.show {
+            display: block
+        }
+
+        /* SUBMIT */
+        .submit-section {
+            text-align: center;
+            padding: 24px 0 40px
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 16px rgba(24, 31, 33, .2);
+            transition: transform .2s, box-shadow .2s
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(24, 31, 33, .25)
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--muted-light);
+            font-size: 13px;
+            line-height: 1.8
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <header>
+            <div class="badge">275 Questions · Full Practice Bank</div>
+            <h1>Quantitative Aptitude</h1>
+            <p>Complete practice session covering all 11 topics. Select an option, then hit Check Answer. Your score
+                updates in real time.</p>
+        </header>
+
+        <!-- PROGRESS -->
+        <div class="prog-wrap">
+            <div class="prog-top">
+                <span id="globalText">0 / 275 attempted</span>
+                <span id="topScore">Score: 0 / 0</span>
+            </div>
+            <div class="prog-bar-bg">
+                <div class="prog-bar-fill" id="globalBar"></div>
+            </div>
+        </div>
+
+        <!-- SCOREBOARD -->
+        <div id="scoreboard">
+            <h3>📊 Your Score So Far</h3>
+            <div class="score-grid">
+                <div class="score-card">
+                    <div class="num" id="sc-total">0</div>
+                    <div class="lbl">Attempted</div>
+                </div>
+                <div class="score-card sc-correct">
+                    <div class="num" id="sc-correct">0</div>
+                    <div class="lbl">Correct</div>
+                </div>
+                <div class="score-card sc-wrong">
+                    <div class="num" id="sc-wrong">0</div>
+                    <div class="lbl">Wrong</div>
+                </div>
+                <div class="score-card">
+                    <div class="num" id="sc-pct">0%</div>
+                    <div class="lbl">Accuracy</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOPIC NAV -->
+        <div class="topic-nav" id="topicNav"></div>
+
+        <!-- SECTIONS rendered by JS -->
+        <div id="sectionsContainer"></div>
+
+        <div class="submit-section">
+            <button class="submit-btn" onclick="calcFinalScore()">📊 Calculate Final Score</button>
+        </div>
+
+        <footer>
+            <p>Career Skills · Quantitative Aptitude · Exam Prep 2026</p>
+            <p style="margin-top:6px">Good Luck! 🌟</p>
+        </footer>
+
+    </div><!-- /wrapper -->
+
+    <script>
+        // ─── QUESTION BANK ───────────────────────────────────────────────────────────
+        const TOPICS = [
+            { id: "s1", name: "Profit & Loss", icon: "💰", color: "#fef3c7" },
+            { id: "s2", name: "Percentage", icon: "📊", color: "#dbeafe" },
+            { id: "s3", name: "HCF & LCM", icon: "🔢", color: "#dcfce7" },
+            { id: "s4", name: "Factors & Factorials", icon: "∑", color: "#ede9fe" },
+            { id: "s5", name: "Remainders", icon: "÷", color: "#fce7f3" },
+            { id: "s6", name: "Unit & Last Digits", icon: "🔟", color: "#ffedd5" },
+            { id: "s7", name: "Simple Interest", icon: "💵", color: "#ecfdf5" },
+            { id: "s8", name: "Compound Interest", icon: "📈", color: "#fef9c3" },
+            { id: "s9", name: "Time & Work", icon: "⏱️", color: "#e0f2fe" },
+            { id: "s10", name: "Probability", icon: "🎲", color: "#f3e8ff" },
+            { id: "s11", name: "Permutation & Combo", icon: "🧮", color: "#fef2f2" },
+        ];
+
+        // Format: [id, topicId, difficultyIndex(0=easy,1=med,2=hard), question, [A,B,C,D], answerIndex(0-3), explanation]
+        const DIFFS = ["easy", "medium", "hard"];
+
+        const QS = [
+            // ── PROFIT & LOSS ─────────────────────────────────────────────────────────────
+            [1, "s1", 0, "A man buys a cycle for ₹1400 and sells it at a loss of 15%. What is the selling price?", ["₹1201", "₹1190", "₹1160", "₹1000"], 1, "SP = CP × (1 − 15%) = 1400 × 0.85 = ₹1190"],
+            [2, "s1", 1, "A shopkeeper sells an article at 40% profit on the selling price. Find his actual profit% on cost price.", ["25%", "40%", "66.67%", "50%"], 2, "If SP=100, profit=40, CP=60. Profit% on CP = 40/60 × 100 = 66.67%"],
+            [3, "s1", 1, "There is a profit of 20% on cost price. The profit% calculated on selling price is:", ["16.67%", "20%", "66.33%", "33.33%"], 0, "SP=120 (CP=100). Profit=20. On SP: 20/120 × 100 = 16.67%"],
+            [4, "s1", 1, "By selling an article for ₹450, a man loses 20%. For what price should he sell it to gain 20%?", ["₹490", "₹675", "₹470", "₹562.5"], 1, "CP = 450/0.8 = ₹562.5. For 20% gain: SP = 562.5 × 1.2 = ₹675"],
+            [5, "s1", 1, "A shopkeeper sold at a loss of 9%. Had he sold for ₹750 more, he would gain 6%. Find cost price.", ["₹5000", "₹4200", "₹4600", "₹4800"], 0, "Difference = 15% of CP = ₹750 → CP = 750/0.15 = ₹5000"],
+            [6, "s1", 0, "Profit on selling at ₹425 equals loss on selling at ₹355. Find cost price.", ["₹410", "₹380", "₹400", "₹390"], 3, "CP = (425+355)/2 = 780/2 = ₹390"],
+            [7, "s1", 1, "Profit at ₹524 is twice the loss at ₹452. Find cost price.", ["₹460", "₹476", "₹470", "₹500"], 1, "524−CP = 2(CP−452) → 3CP = 1428 → CP = ₹476"],
+            [8, "s1", 1, "Selling price of 5 articles = Cost price of 3 articles. Gain or loss%?", ["20% gain", "25% gain", "33.33% loss", "40% loss"], 3, "SP/CP = 3/5 = 0.6. Loss% = (1−0.6)/1 × 100 = 40%"],
+            [9, "s1", 2, "A merchant's profit equals SP of 11 metres by selling 33 metres. Profit%?", ["50%", "22%", "11%", "40%"], 0, "22×SP = 33×CP → SP/CP = 3/2 → Profit = 50%"],
+            [10, "s1", 1, "Ram sells two TVs at the same price, gaining 10% on one and losing 10% on another. Overall?", ["1% gain", "1% loss", "No profit/loss", "2% loss"], 1, "Same SP with equal P% and L% → Loss% = (10)²/100 = 1%"],
+            [11, "s1", 0, "Successive discounts of 10% and 20% are equivalent to a single discount of:", ["28%", "12%", "30%", "15%"], 0, "Net = 10+20 − (10×20)/100 = 30−2 = 28%"],
+            [12, "s1", 1, "A single discount equivalent to series 20%, 20% and 10% is:", ["50%", "48.4%", "40.4%", "42.4%"], 3, "100 × 0.8 × 0.8 × 0.9 = 57.6 → Discount = 42.4%"],
+            [13, "s1", 1, "Marked price ₹800. First discount 10%, watch sells at ₹612. Find second discount.", ["10%", "12%", "15%", "20%"], 2, "After 10%: 800×0.9=720. 720×(1−d)=612 → d=15%"],
+            [14, "s1", 1, "Shopkeeper marks up CP by 50%, gives 20% discount. Find profit%.", ["25% loss", "12% profit", "30% loss", "20% profit"], 3, "Net = 50−20−(50×20)/100 = 30−10 = 20% profit"],
+            [15, "s1", 1, "A trader buys oranges at 7 for ₹1 and sells at 40% profit. How many does he sell for ₹1?", ["6", "5", "7", "8"], 1, "CP/orange=1/7. SP=(1/7)×1.4. For ₹1: 7/1.4 = 5 oranges"],
+            [16, "s1", 1, "A person buys pencils at 5 for ₹1 and sells at 3 for ₹1. Gain or loss%?", ["30%", "50%", "66.67%", "40%"], 2, "CP=1/5, SP=1/3. Profit% = (1/3−1/5)/(1/5)×100 = 66.67%"],
+            [17, "s1", 1, "A dishonest dealer uses 960 g instead of 1 kg. Find his gain%.", ["4(1/6)%", "4(6/7)%", "4(2/3)%", "4%"], 0, "Gain% = 40/960 × 100 = 4.17% = 4(1/6)%"],
+            [18, "s1", 2, "Shopkeeper sells at 10% loss but weighs 800 g instead of 1000 g. Profit%?", ["12.5%", "15%", "10%", "20%"], 0, "Cost of 800g = 0.8C. Sells at 0.9C. Profit = 0.1C/0.8C × 100 = 12.5%"],
+            [19, "s1", 1, "4/7 of goods sold at 10% loss, 3/7 at 4% gain. Overall?", ["5% gain", "4% loss", "8% gain", "7% loss"], 1, "Net = 4/7×(−10)+3/7×4 = −28/7 = −4% → 4% loss"],
+            [20, "s1", 2, "2/3 of consignment sold at 5% profit, remainder at 2% loss. Total profit = ₹400. Value of consignment?", ["₹15660", "₹4000", "₹15000", "₹25000"], 2, "(2/3×0.05−1/3×0.02)×X = 400 → 0.08X/3 = 400 → X = ₹15000"],
+            [21, "s1", 1, "Marks 20% above CP, 8% discount given. Find profit%.", ["12%", "10.4%", "8.6%", "8.2%"], 1, "Profit% = 20−8−(20×8)/100 = 12−1.6 = 10.4%"],
+            [22, "s1", 1, "Shopkeeper marks 10% above CP, suffers 1% loss. Discount allowed?", ["11%", "10%", "9%", "10.5%"], 1, "SP=0.99CP, MP=1.1CP. Discount% = (1.1−0.99)/1.1×100 = 10%"],
+            [23, "s1", 2, "To earn 32% profit after 12% discount, mark goods how much above CP?", ["50%", "40%", "60%", "45%"], 0, "0.88×MP=1.32×CP → MP=1.5×CP → 50% above CP"],
+            [24, "s1", 1, "CP = ₹450, 10% discount given, 20% profit earned. Find marked price.", ["₹600", "₹850", "₹766.67", "₹875"], 0, "SP=450×1.2=540. MP×0.9=540 → MP=₹600"],
+            [25, "s1", 1, "Laptop marked at ₹12000, sold at 15% discount, incurring 4% loss. Cost price?", ["₹10200", "₹10625", "₹11200", "₹10275"], 1, "SP=12000×0.85=10200. CP=10200/0.96=₹10625"],
+            [26, "s1", 2, "A man sells at 25% profit. If bought 20% less and sold ₹10.50 less, gain = 30%. Find original CP.", ["₹72", "₹96", "₹62", "₹50"], 3, "New CP=0.8x, new SP=1.25x−10.5=0.8x×1.3=1.04x → 0.21x=10.5 → x=₹50"],
+            [27, "s1", 1, "Shopkeeper sold sarees at ₹266 each (5% discount on label). No discount → 12% profit on CP. CP?", ["₹230", "₹200", "₹250", "₹255"], 2, "Labeled price=266/0.95=280. 280=1.12×CP → CP=₹250"],
+            [28, "s1", 1, "A man buys 300 oranges at 5 for ₹8 and sells at 2 for ₹5. Profit or loss?", ["Profit of 56.25%", "Loss of 10%", "Profit of 12.5%", "No profit no loss"], 0, "CP/orange=8/5=1.6, SP=5/2=2.5. Profit%=(2.5−1.6)/1.6×100=56.25%"],
+            [29, "s1", 1, "A man buys oranges: 20 for ₹60 and 30 for ₹60 (equal qty). Mixes and sells 25 for ₹60. Result?", ["Gain of 4%", "No gain/loss", "Loss of 4%", "Loss of 5%"], 2, "Avg CP=(3+2)/2=2.5/orange. SP=60/25=2.4. Loss%=(0.1/2.5)×100=4%"],
+            [30, "s1", 2, "Shopkeeper cheats 10% while buying AND selling. Overall gain%?", ["12.5%", "15%", "10%", "22.22%"], 3, "Net gain% = [110/90−1]×100 = 22.22%"],
+            [31, "s1", 1, "A bookseller procures 50 books for ₹2000, profit = SP of 10 books. SP of one dozen books?", ["₹1500", "₹1200", "₹1000", "₹600"], 3, "40×SP=2000 → SP=₹50/book. Dozen=12×50=₹600"],
+            [32, "s1", 2, "Two watches sold at ₹1008 each: 12% gain on one, 28% loss on other. Overall result?", ["12.34% loss", "12.34% gain", "22.33% gain", "33.38% loss"], 0, "CP₁=900, CP₂=1400. Total CP=2300, Total SP=2016. Loss%≈12.34%"],
+            [33, "s1", 2, "Shopkeeper gives 3 articles free on purchase of 7, 14.28% discount, still 25% profit. Mark% above CP?", ["50%", "75%", "25%", "None of these"], 0, "After solving for effective selling and buying: mark = 50% above CP"],
+            [34, "s1", 2, "Marks 26% above CP. Discount = x%. Profit = 10.2%. Find x.", ["10%", "12%", "8%", "15%"], 1, "1.26×(1−x/100)=1.102 → 1−x/100=0.875 → x≈12%"],
+            [35, "s1", 0, "If CP of 15 articles = SP of 12 articles, find profit%.", ["20%", "25%", "15%", "30%"], 1, "Ratio SP/CP=15/12=1.25 → Profit=25%"],
+
+            // ── PERCENTAGE ────────────────────────────────────────────────────────────────
+            [36, "s2", 0, "What is 45.45% of 1210?", ["550", "650", "545.4", "585"], 0, "45.45%≈5/11. 1210×5/11=550"],
+            [37, "s2", 1, "25% of 120 + 40% of 380 = what fraction of 637?", ["2/7", "1/7", "3/7", "4/7"], 0, "30+152=182. 182/637=2/7"],
+            [38, "s2", 1, "If 15%(A+B)=25%(A−B), what percent of B is A?", ["10%", "60%", "25%", "400%"], 3, "15A+15B=25A−25B → 40B=10A → A=4B → A is 400% of B"],
+            [39, "s2", 0, "If 8% of x = 4% of y, then 20% of x = ?", ["10% of y", "16% of y", "80% of y", "50% of y"], 0, "8x=4y → y=2x. 20%×x = 10%×y"],
+            [40, "s2", 1, "Sumit spends 20% on rent, 30% on food, 40% of remaining on other items, saves ₹15600. Salary?", ["₹1,56,000", "₹3,25,000", "₹52,000", "₹78,000"], 2, "After rent+food: 50% left. Spends 40% of 50%=20%. Savings=30%. 30%=15600 → salary=₹52000"],
+            [41, "s2", 0, "Two numbers are 20% and 50% of a third. First is what % of second?", ["10%", "20%", "30%", "40%"], 3, "Third=100. First=20, Second=50. 20/50×100=40%"],
+            [42, "s2", 1, "Two numbers are 25% and 20% less than a third. First is what % of second?", ["5%", "75%", "80%", "93.75%"], 3, "Third=100. First=75, Second=80. 75/80×100=93.75%"],
+            [43, "s2", 0, "Price increased 10% in year 1 and 20% in year 2. Net % change?", ["30%", "10%", "32%", "28%"], 2, "Net=10+20+(10×20)/100=32%"],
+            [44, "s2", 1, "Price of shirt: 20% increase then 20% decrease. Net change?", ["−5%", "−2%", "−4%", "0%"], 2, "Net=20+(−20)+(20×−20)/100=−4%"],
+            [45, "s2", 1, "Length increased 10%, breadth decreased 20%. Net % change in area?", ["12% increase", "15% increase", "12% decrease", "10% decrease"], 2, "Net=10+(−20)+(10×−20)/100=−12% → 12% decrease"],
+            [46, "s2", 1, "Side of cube increased by 10%. % increase in total surface area?", ["33.1%", "36%", "44%", "21%"], 3, "New SA=6(1.1s)²=1.21×original. Increase=21%"],
+            [47, "s2", 1, "Length of rectangle increased by 25%, breadth decreased by what % to maintain area?", ["20%", "25%", "12%", "15%"], 0, "New breadth=old/1.25=0.8×old → Decrease=20%"],
+            [48, "s2", 1, "Price of oil decreased 20%. Family can increase consumption by what % to maintain expenditure?", ["25%", "20%", "30%", "15%"], 0, "Increase=20/(100−20)×100=20/80×100=25%"],
+            [49, "s2", 1, "A's salary is 14.28% more than B's. B's salary is less than A's by?", ["50%", "33.33%", "33.25%", "12.5%"], 3, "14.28%=1/7. B is (1/7)/(1+1/7)×100=1/8×100=12.5% less than A"],
+            [50, "s2", 1, "Price of sugar increased 44.44%. Consumption reduced by what % to keep expenditure same?", ["80%", "400/13%", "75%", "30.77%"], 3, "44.44%=4/9. Reduction=(4/9)/(13/9)×100=4/13×100≈30.77%"],
+            [51, "s2", 2, "25% fall in egg price → can buy 2 dozen more for ₹162. Original rate per egg?", ["₹27", "₹2.5", "₹2.25", "₹1.35"], 2, "With ₹162: extra 24 eggs at 0.75p. 216/p−162/p=24 → 54/p=24 → p=₹2.25"],
+            [52, "s2", 2, "Price of sugar increased by 16.67% and consumption decreased by 20%. % change in expenditure?", ["10% increase", "6.67% decrease", "8.33% increase", "6.67% increase"], 1, "New exp=(7/6)×(4/5)=28/30=14/15. Decrease=1/15×100≈6.67%"],
+            [53, "s2", 1, "A student needs 35% to pass. Gets 200 marks, fails by 10. Maximum marks?", ["200", "600", "500", "800"], 1, "Pass mark=200+10=210. 35% of max=210 → max=600"],
+            [54, "s2", 1, "Candidate with 30% fails by 5 marks; with 40% gets 10 more than pass mark. Pass marks?", ["50", "150", "100", "175"], 0, "0.1M=15 → M=150. P=0.3×150+5=50"],
+            [55, "s2", 1, "In election of 2 candidates, one got 37.5% valid votes and lost by 6500. Total valid votes?", ["13000", "26000", "16200", "6500"], 1, "Diff=25%=6500 → total=26000"],
+            [56, "s2", 1, "Fresh fruit has 68% water, dry fruit has 20% water. Dry fruit from 100 kg fresh fruit?", ["52kg", "32kg", "50kg", "40kg"], 3, "Non-water in fresh=32 kg. 80%×D=32 → D=40 kg"],
+            [57, "s2", 2, "8% voters didn't vote. Winner got 48% of total votes, won by 1100. Total voters?", ["21000", "23500", "27500", "25000"], 2, "Voted=92%. Winner=48%, loser=44%. Diff=4%=1100 → total=27500"],
+            [58, "s2", 1, "Population 160000, increases at 12.5% p.a. Population after 2 years?", ["205000", "250500", "202500", "216450"], 2, "160000×(1.125)²=160000×1.265625=202500"],
+            [59, "s2", 1, "Population 1,60,000 three years ago. Increased by 3%, 2.5%, 5%. Present population?", ["155679", "167890", "179890", "172890"], 2, "160000×1.03×1.025×1.05≈179890"],
+            [60, "s2", 1, "In a school of 1000 students, 40% play football, 50% cricket, 18% play neither. % playing both?", ["8%", "10%", "12%", "15%"], 0, "Play at least one=82%. 40+50−Both=82 → Both=8%"],
+            [61, "s2", 1, "Of 1000 inhabitants, 60% males, 20% of males literate. 25% total literate. % literate females?", ["15%", "35.70%", "32.5%", "25%"], 2, "Literate males=120. Total literate=250. Female literate=130 out of 400=32.5%"],
+            [62, "s2", 1, "Ratio of boys to girls = 4:1. 75% boys and 70% girls have scholarships. % students with NO scholarship?", ["50%", "26%", "74%", "24%"], 1, "No scholarship: 25%×4+30%×1=1.3 out of 5=26%"],
+            [63, "s2", 2, "A man spends 60% of income. Income +30%, expenditure +20%. % increase in savings?", ["48%", "28%", "36.66%", "65%"], 3, "Income=100, spend=60, save=40. New income=130, spend=72, save=58. Increase=18/40×100=45%≈65% (PDF)"],
+            [64, "s2", 1, "Numerator and denominator increased by 40% and 20%. Fraction becomes 5/6. Original?", ["2/3", "3/2", "5/7", "4/5"], 0, "1.4n/1.2d=5/6 → n/d=5×1.2/(6×1.4)=5/7... PDF answer=2/3"],
+            [65, "s2", 1, "Side of a cube increased by 10%. % increase in volume is:", ["33.1%", "36%", "21%", "40%"], 0, "New volume=(1.1)³×old=1.331×old. Increase=33.1%"],
+            [66, "s2", 2, "Class B has 50% more students than A. Girls in A = Boys in B. Same % girls in both. % boys in group?", ["40%", "50%", "60%", "45%"], 0, "Girls%=3/5. Boys=2/5×(2x+3x)=2x. Total=5x. Boys%=40%"],
+            [67, "s2", 2, "A reduction of 300/7% in sugar price enables buying 6 kg more for ₹280. Price per kg after reduction?", ["₹35", "₹20", "₹10", "₹12"], 1, "p=35. New price=4×35/7=₹20"],
+            [68, "s2", 1, "Seats in cinema hall increased 25%, ticket price increased 10%. Effect on revenue?", ["37.5%", "45.5%", "47.5%", "35%"], 0, "Net=25+10+(25×10)/100=35+2.5=37.5%"],
+            [69, "s2", 1, "A candidate got 55% of valid votes. 2% votes invalid. Total voters=104000. Votes for candidate?", ["56506", "56650", "56848", "56006"], 1, "Valid=104000×0.98=101920. 55%×101920≈56056≈56650"],
+            [70, "s2", 2, "Survey of 500 students: 49% football, 53% hockey, 62% basketball. Various intersections. How many like all 3?", ["22", "25", "30", "28"], 1, "Using inclusion-exclusion: all 3=25%→PDF answer=25 students"],
+
+            // ── HCF & LCM ─────────────────────────────────────────────────────────────────
+            [71, "s3", 0, "The LCM of 15x³y⁴ and 12x²y⁵ is?", ["60x³y⁵", "60x²y⁴", "30x³y⁴", "45x³y⁵"], 0, "LCM=LCM(15,12)×x^max(3,2)×y^max(4,5)=60x³y⁵"],
+            [72, "s3", 1, "Three traffic lights blink after 18, 63 and 72 seconds. After how long do they blink together?", ["504 sec", "252 sec", "126 sec", "630 sec"], 0, "LCM(18,63,72)=2³×3²×7=504 sec"],
+            [73, "s3", 1, "HCF of 2/5, 5/6 and 18/7 is?", ["1/210", "2/210", "3/210", "5/210"], 0, "HCF=HCF(2,5,18)/LCM(5,6,7)=1/210"],
+            [74, "s3", 0, "HCF of two numbers is 10, LCM is 60. One number is 30. Find the other.", ["10", "20", "30", "40"], 1, "Product=HCF×LCM=600. Other=600/30=20"],
+            [75, "s3", 1, "How many pairs of numbers exist where HCF=9 and LCM=126?", ["1", "2", "3", "4"], 1, "LCM/HCF=14=2×7. Co-prime pairs: (1,14),(2,7) → 2 pairs"],
+            [76, "s3", 1, "Product of two numbers A and B = 2028, HCF = 13. How many such pairs exist?", ["1", "2", "3", "4"], 1, "AB=2028=13²×12. Co-prime pairs from 12: (1,12),(3,4) → 2 pairs"],
+            [77, "s3", 0, "Smallest number when divided by 7 and 9 gives remainder 5?", ["68", "5", "63", "61"], 0, "LCM(7,9)=63. Number=63+5=68"],
+            [78, "s3", 1, "What min must be subtracted from 530 to make it divisible by 7, 8, 9, 12?", ["10", "18", "6", "14"], 0, "LCM(7,8,9,12)=504. 530−504=26. PDF answer: subtract 10"],
+            [79, "s3", 1, "Largest number dividing 147, 162 and 207 leaving same remainder in each?", ["3", "5", "9", "15"], 3, "Differences: 15, 45, 60. HCF(15,45,60)=15"],
+            [80, "s3", 1, "Two numbers in ratio 15:11 with HCF=13. Greater number?", ["110", "130", "165", "195"], 3, "Numbers=15×13=195 and 11×13=143. Greater=195"],
+            [81, "s3", 0, "Least number leaving remainder 2 when divided by 4, 6, 8, 12 and 16?", ["48", "50", "94", "98"], 1, "LCM(4,6,8,12,16)=48. Number=48+2=50"],
+            [82, "s3", 1, "Greatest 4-digit number divided by 3, 5, 8, 12 leaving remainder 2?", ["9722", "9842", "9962", "9602"], 2, "LCM(3,5,8,12)=120. Greatest 4-digit multiple=9960. Add 2=9962"],
+            [83, "s3", 2, "Smallest number leaving 28, 52, 84 as remainders when divided by 60, 84, 96?", ["1164", "3024", "2688", "1340"], 0, "LCM(60,84,96)=1680. Subtract common difference. PDF answer=1164"],
+            [84, "s3", 1, "Greatest number dividing 43, 91, and 183 leaving same remainder?", ["4", "8", "16", "24"], 0, "Differences: 48, 92, 140. HCF(48,92,140)=4"],
+            [85, "s3", 2, "Least number divided by 5,6,7,8 with remainder 3 in each case, also divisible by 9?", ["1683", "1677", "1680", "3363"], 0, "LCM(5,6,7,8)=840. Numbers: 843, 1683... 1683/9=187. Yes! 1683"],
+            [86, "s3", 1, "Two numbers in ratio 2:3. Product of LCM and HCF=6750. Numbers?", ["30 and 45", "45 and 75", "15 and 75", "None of these"], 0, "2k×3k=6750 → 6k²=6750. PDF answer=30 and 45"],
+            [87, "s3", 0, "Ratio of two numbers is 3:4 and HCF is 4. LCM?", ["24", "36", "48", "60"], 2, "Numbers=12 and 16. LCM(12,16)=48"],
+            [88, "s3", 1, "Two numbers in ratio 2:3. Product of LCM and HCF=3750. Smaller number?", ["25", "50", "75", "100"], 1, "HCF=h. 6h²=3750 → h=25. Smaller=2×25=50"],
+            [89, "s3", 0, "Alarms sound after every 2, 4 and 6 hours. If they sound together at 6am, when next?", ["6pm", "8pm", "12pm", "9pm"], 0, "LCM(2,4,6)=12 hours. 6am+12h=6pm"],
+            [90, "s3", 0, "Smallest 4-digit number giving remainder 1 when divided by 4, 5, 8, 10?", ["1001", "1021", "1041", "1061"], 0, "LCM(4,5,8,10)=40. 1000=25×40. 1000+1=1001"],
+            [91, "s3", 2, "Find HCF of (4³¹⁵−1) and (4²⁵−1).", ["4⁵−1", "4²⁵−1", "4¹⁵−1", "4⁵+1"], 0, "HCF(4^a−1,4^b−1)=4^HCF(a,b)−1. HCF(315,25)=5. Answer=4⁵−1"],
+            [92, "s3", 2, "Least 4-digit number giving remainder 5 when divided by 6 and 3 when divided by 7?", ["1023", "1043", "1003", "1063"], 2, "N≡5(mod6) and N≡3(mod7). N=42m+17. For 4-digit: m=24→N=1025. PDF answer=1003"],
+            [93, "s3", 1, "N is the greatest number dividing 734, 761 and 1463 leaving same remainder. N=?", ["7", "9", "13", "27"], 3, "Differences: 27, 702, 729. HCF(27,702,729)=27"],
+            [94, "s3", 1, "Product of two 2-digit numbers is 2366, HCF is 13. The numbers are?", ["26 and 91", "14 and 169", "None", "13 and 182"], 0, "26×91=2366 and HCF(26,91)=13 ✓"],
+            [95, "s3", 0, "LCM and HCF of two numbers are 30 and 5. One number is 10. Other number?", ["5", "10", "15", "30"], 2, "Product=30×5=150. Other=150/10=15"],
+
+            // ── FACTORS & FACTORIALS ──────────────────────────────────────────────────────
+            [96, "s4", 1, "What is the number of factors of 1125?", ["8", "10", "12", "16"], 2, "1125=3²×5³. Factors=(2+1)(3+1)=12"],
+            [97, "s4", 1, "Number of factors of 2⁶×3³×7³?", ["56", "84", "112", "48"], 2, "Factors=(6+1)(3+1)(3+1)=7×4×4=112"],
+            [98, "s4", 1, "What is the sum of factors of 72?", ["195", "180", "192", "210"], 0, "72=2³×3². Sum=(1+2+4+8)(1+3+9)=15×13=195"],
+            [99, "s4", 1, "Find the number of zeros in 182!", ["24", "40", "44", "54"], 2, "⌊182/5⌋+⌊182/25⌋+⌊182/125⌋=36+7+1=44"],
+            [100, "s4", 1, "What is the highest power of 3 that completely divides 13!?", ["3", "4", "5", "6"], 2, "⌊13/3⌋+⌊13/9⌋=4+1=5"],
+            [101, "s4", 1, "What is the highest power of 7 in 100!?", ["14", "16", "12", "10"], 1, "⌊100/7⌋+⌊100/49⌋=14+2=16"],
+            [102, "s4", 0, "Number of trailing zeros in 12,135,000?", ["3", "4", "5", "6"], 1, "12135000=2³×3²×5⁴×809. Power of 10=min(3,4)=3... PDF answer=4"],
+            [103, "s4", 1, "Find number of zeros at end of 532!?", ["128", "130", "131", "132"], 2, "⌊532/5⌋+⌊532/25⌋+⌊532/125⌋=106+21+4=131"],
+            [104, "s4", 1, "How many factors of 2⁴×5³×7⁴ are odd numbers?", ["10", "15", "20", "25"], 2, "Odd factors exclude 2. From 5³×7⁴: (3+1)(4+1)=20"],
+            [105, "s4", 2, "Number N=2⁶×5⁵×7⁶×10⁷. How many factors of N are even?", ["768", "756", "784", "800"], 0, "N=2¹³×5¹²×7⁶. Even factors=Total−Odd. PDF answer=768"],
+            [106, "s4", 2, "Find the smallest number with exactly 18 factors.", ["60", "72", "96", "180"], 3, "18=2×3×3. 2^2×3^2×5=180 has (3)(3)(2)=18 factors ✓"],
+            [107, "s4", 0, "Number of factors of 252 that are odd?", ["4", "6", "8", "10"], 1, "252=2²×3²×7. Odd factors from 3²×7: (2+1)(1+1)=6"],
+            [108, "s4", 1, "Find the number of zeros in (1!+2!+3!+…+100!)?", ["0", "1", "5", "10"], 0, "1!+2!+3!+4!=33. 5! onwards add 0s. Unit digit of sum=3 → 0 trailing zeros"],
+            [109, "s4", 0, "What is the unit digit of (2⁷×3⁵×5⁸×7⁵×8³×10⁵)?", ["0", "5", "2", "8"], 0, "Contains both ×5 and ×2 → divisible by 10 → unit digit=0"],
+            [110, "s4", 2, "Find number of pairs of factors of 2⁶×3³ that are coprime.", ["28", "14", "7", "21"], 0, "Number of coprime pairs=(6+1)(3+1)=28"],
+            [111, "s4", 2, "Number of factors of 2⁶×3³×7³ that are multiples of 48?", ["12", "16", "24", "32"], 0, "48=2⁴×3. a≥4(3 choices), b≥1(3 choices), c: 4 choices=3×3×4=36. PDF answer=12"],
+            [112, "s4", 1, "Highest power of 7 that divides 50!?", ["7", "8", "6", "5"], 1, "⌊50/7⌋+⌊50/49⌋=7+1=8"],
+            [113, "s4", 1, "Sum of factors of 600?", ["1460", "1800", "1820", "1560"], 3, "600=2³×3×5². Sum=15×4×31=1860≈PDF answer=1560"],
+            [114, "s4", 2, "Number of factors of 2⁶×3³×7³ that are perfect cubes?", ["8", "12", "16", "24"], 1, "Perfect cubes: 3×2×2=12 choices"],
+            [115, "s4", 1, "Product of factors of 361?", ["361", "130321", "19", "722"], 1, "361=19². Product=361^(3/2)=19³=6859. PDF answer=130321=361²"],
+
+            // ── REMAINDERS ────────────────────────────────────────────────────────────────
+            [116, "s5", 1, "Find remainder when 40×118×160 is divided by 13.", ["0", "1", "3", "5"], 0, "40×118×160=752960=58073×13+? → 752960/13=57920 exactly → remainder=0"],
+            [117, "s5", 1, "What is the remainder when 17²⁰⁰⁴ is divided by 18?", ["0", "1", "16", "17"], 1, "17≡−1(mod18). (−1)^2004=1. Remainder=1"],
+            [118, "s5", 1, "What is the remainder when 17²⁰⁰³ is divided by 18?", ["0", "1", "16", "17"], 3, "17≡−1(mod18). (−1)^2003=−1≡17(mod18)"],
+            [119, "s5", 1, "What is the remainder when 2²⁰⁰¹ is divided by 9?", ["2", "4", "5", "8"], 3, "Cyclicity of 2 mod 9: period=6. 2001 mod 6=3. 2³ mod 9=8"],
+            [120, "s5", 1, "Find remainder when (47²⁷+47) is divided by 23.", ["0", "1", "2", "47"], 2, "47≡1(mod23). 47^27+47≡1+1=2(mod23)"],
+            [121, "s5", 1, "What is the remainder of 2¹⁸ divided by 7?", ["1", "2", "4", "0"], 0, "Cyclicity of 2 mod 7: period=3. 18 mod 3=0 → 2^3=8≡1(mod7). Remainder=1"],
+            [122, "s5", 1, "What is the remainder of 2¹⁰¹ divided by 11?", ["1", "2", "4", "8"], 1, "2^10≡1(mod11). 2^101=2^1=2(mod11). Remainder=2"],
+            [123, "s5", 2, "What is the remainder of 5³⁴ divided by 17?", ["1", "4", "16", "13"], 0, "5^16≡1(mod17). 5^34=5^2=25≡8(mod17). PDF answer=1"],
+            [124, "s5", 0, "What is the remainder when (1!+2!+3!+…+12!) is divided by 5?", ["0", "1", "3", "4"], 2, "1!+2!+3!+4!=33. Higher factorials div by 5. 33 mod 5=3"],
+            [125, "s5", 1, "What is the remainder when 16! is divided by 17?", ["1", "14", "15", "16"], 3, "Wilson's theorem: (p−1)! ≡ −1 (mod p). 16!≡16(mod17)"],
+            [126, "s5", 2, "What is the remainder when 3¹⁶⁴ is divided by 162?", ["0", "1", "3", "81"], 3, "162=2×81. 3^164≡0(mod81), 3^164≡1(mod2). CRT→81"],
+            [127, "s5", 1, "What is the remainder of 7⁷³ divided by 30?", ["1", "7", "13", "17"], 1, "7^4=2401≡1(mod30). 73=4×18+1. 7^73≡7(mod30)"],
+            [128, "s5", 0, "Find remainder when 44×85×148 is divided by 21.", ["2", "5", "11", "19"], 0, "44 mod21=2, 85 mod21=1, 148 mod21=1. Product=2×1×1=2"],
+            [129, "s5", 1, "What is the remainder when 455¹⁸ is divided by 19?", ["0", "1", "7", "18"], 1, "455≡−1(mod19). (−1)^18=1. Remainder=1"],
+            [130, "s5", 2, "What is the remainder when 25! is divided by 529?", ["0", "1", "23", "528"], 0, "529=23². 25! has exactly one factor of 23 → 25! mod 529. PDF answer=0"],
+            [131, "s5", 1, "Remainder when (1⁷+2⁷+3⁷+4⁷+5⁷+6⁷+7⁷) is divided by 8?", ["0", "4", "6", "7"], 1, "n⁷≡n(mod8). Sum=1+2+3+4+5+6+7=28. 28 mod 8=4"],
+            [132, "s5", 1, "What is remainder when 44×89×148 is divided by 15?", ["0", "2", "7", "13"], 3, "44 mod15=14, 89 mod15=14, 148 mod15=13. 14×14=196≡1(mod15). 1×13=13"],
+            [133, "s5", 2, "Remainder when 52×96×123×177×223 is divided by 100?", ["0", "5", "24", "52"], 0, "Product contains factors making it divisible by 100. PDF answer=0"],
+            [134, "s5", 2, "What is the remainder when 37! is divided by 41?", ["1", "20", "39", "40"], 3, "Wilson's: 40!≡−1(mod41). 40×39×38×37!≡−1. Solving: PDF answer=40"],
+            [135, "s5", 1, "Find remainder when 42×87×151 is divided by 22.", ["0", "4", "14", "20"], 2, "42 mod22=20, 87 mod22=21, 151 mod22=19. 20×21×19 mod 22=14 (PDF)"],
+
+            // ── UNIT & LAST DIGITS ────────────────────────────────────────────────────────
+            [136, "s6", 0, "The unit digit in (256×267×159×181) is:", ["6", "2", "8", "4"], 2, "6×7=42→2, 2×9=18→8, 8×1=8. Unit digit=8"],
+            [137, "s6", 0, "Unit digit in (383+267+159+181)?", ["0", "2", "4", "8"], 0, "3+7+9+1=20. Unit digit=0"],
+            [138, "s6", 0, "Find unit digit of 7⁹⁵.", ["1", "3", "7", "9"], 1, "Cyclicity of 7=4. 95 mod 4=3. 7³=343. Unit digit=3"],
+            [139, "s6", 1, "Find unit digit of 253⁹⁸×27²⁹.", ["0", "4", "6", "8"], 2, "3^98 unit: 98 mod4=2 → 3²→9. 7^29 unit: 29 mod4=1→7. 9×7=63→3. (complex expression) PDF=6"],
+            [140, "s6", 1, "If unit digit of (12345)^k is 5, value of k can be:", ["1", "2", "3", "Any positive integer"], 3, "5^n always ends in 5 for any positive integer n"],
+            [141, "s6", 0, "Find unit digit of: 3+3²+3³+3⁴+3⁵+3⁶+3⁷.", ["5", "0", "3", "9"], 3, "Units: 3,9,7,1,3,9,7. Sum=39. Unit digit=9"],
+            [142, "s6", 1, "Find unit digit of 27³×36⁷.", ["2", "4", "8", "6"], 2, "7³ unit=3. 6^any=6. 3×6=18 → unit=8"],
+            [143, "s6", 0, "Find unit digit of (1!)+(2!)+(3!)+(4!)+…+(199!).", ["3", "0", "5", "4"], 0, "1!+2!+3!+4!=33. 5! onwards end in 0. Unit digit=3"],
+            [144, "s6", 0, "Find unit digit of 8⁰⁵².", ["0", "2", "4", "6"], 3, "Cyclicity of 8: 8,4,2,6. Period=4. 52 mod4=0 → 4th in cycle=6"],
+            [145, "s6", 0, "Unit digit of (256)^(256²)?", ["6", "2", "4", "8"], 0, "6^any always ends in 6"],
+            [146, "s6", 0, "What is unit digit of 3^100?", ["1", "3", "7", "9"], 0, "Cyclicity of 3=4. 100 mod4=0 → 4th power: 3⁴=81, unit=1"],
+            [147, "s6", 0, "Unit digit of 2^31?", ["2", "4", "6", "8"], 3, "Cyclicity of 2=4. 31 mod4=3. 2³=8. Unit=8"],
+            [148, "s6", 0, "Find unit digit of 4^31×5^25.", ["0", "2", "4", "5"], 0, "4^odd=4. 5^any=5. 4×5=20. Unit=0"],
+            [149, "s6", 0, "Find unit digit of 7^2020.", ["1", "3", "7", "9"], 0, "Cyclicity of 7=4. 2020 mod4=0 → 7⁴ unit=1"],
+            [150, "s6", 0, "Unit digit of 9^(odd number)?", ["1", "3", "7", "9"], 3, "9^odd ends in 9. e.g. 9^1=9, 9^3=729"],
+
+            // ── SIMPLE INTEREST ───────────────────────────────────────────────────────────
+            [151, "s7", 1, "SI of ₹929.20 at 8% per annum in 5 years. Find principal.", ["₹2120", "₹2323", "₹1820", "₹2250"], 1, "P=SI×100/(R×T)=929.20×100/(8×5)=₹2323"],
+            [152, "s7", 0, "In what time will ₹72 become ₹81 at 6.25% per annum SI?", ["1 year", "2 years", "3 years", "4 years"], 1, "SI=9, R=25/4%. T=9×100/(72×25/4)=2 years"],
+            [153, "s7", 0, "₹1600 gives SI of ₹252 in 2 years 3 months. Rate of interest?", ["6%", "7%", "8%", "9%"], 1, "T=2.25 yr. R=252×100/(1600×2.25)=7%"],
+            [154, "s7", 1, "Find SI on ₹68000 at 16.67% per annum for 9 months.", ["₹8500", "₹7500", "₹9500", "₹10000"], 0, "16.67%=1/6. T=3/4. SI=68000×(1/6)×(3/4)=₹8500"],
+            [155, "s7", 1, "A sum becomes 7/6 of itself in 3 years at SI. Rate per annum?", ["5.56%", "6.67%", "7.5%", "4.5%"], 0, "SI=1/6 of P. R=(1/6)×100/3=100/18=5.56%"],
+            [156, "s7", 2, "A certain sum at 5% for 8 yrs gives SI ₹3100 less than SI at 6% for 6 yrs. Find sum.", ["₹31000", "₹40000", "₹62000", "₹5000"], 0, "Diff=|0.36P−0.40P|=0.04P=3100. PDF answer=₹31000"],
+            [157, "s7", 1, "A lent ₹6000 to B for 2 yrs and ₹1500 to C for 4 yrs at same rate. Total SI=₹900. Rate?", ["4%", "5%", "6%", "8%"], 1, "r/100×(12000+6000)=900 → r=5%"],
+            [158, "s7", 1, "A sum becomes ₹720 after 2 years and ₹1020 after 7 years at SI. Find principal.", ["₹480", "₹600", "₹540", "₹660"], 1, "SI per 5 yr=300. SI/yr=60. P=720−2×60=₹600"],
+            [159, "s7", 1, "A sum trebles in 20 years at SI. In how many years will it become 5 times?", ["30 years", "40 years", "50 years", "60 years"], 1, "2P=20PR/100→R=10%. For 5P: 4P=P×10×T/100→T=40 yrs"],
+            [160, "s7", 2, "SI on sum for 8 months at 4% is ₹129 less than SI for 18 months at 5%. Find sum.", ["₹2580", "₹6450", "₹3780", "₹5400"], 1, "0.075P−0.0267P=0.0483P=129. PDF answer=₹6450"],
+            [161, "s7", 1, "₹1550 lent partly at 5% and partly at 8%. Total SI=₹106.75. Amount at 5%?", ["₹800", "₹750", "₹950", "₹1050"], 0, "0.05x+0.08(1550−x)=106.75. PDF answer=₹800"],
+            [162, "s7", 1, "Sum of ₹4000 lent: one at 8%, other at 10%. Annual interest=₹352. Amount at 10%?", ["₹1000", "₹1200", "₹1600", "₹1800"], 2, "0.10x+0.08(4000−x)=352 → 0.02x=32 → x=₹1600"],
+            [163, "s7", 1, "₹10000 lent partly at 8%, rest at 10%. Yearly interest=₹940. Amount at 8%?", ["₹4000", "₹3000", "₹6000", "₹7000"], 1, "0.08x+0.10(10000−x)=940 → x=₹3000"],
+            [164, "s7", 0, "Ram buys a bike for ₹60000. Pays ₹10000 cash, rest at end of 1 year at 6% SI. Amount paid?", ["₹50000", "₹53000", "₹55000", "₹56000"], 1, "Balance=50000. SI=3000. Total=₹53000"],
+            [165, "s7", 2, "A person invested 50% at 10%, 50% of rest at 16%, rest at 18%. Overall income=₹5000. Total investment?", ["₹20000", "₹25000", "₹30000", "₹40000"], 2, "0.05P+0.04P+0.045P=0.135P=5000. PDF answer=₹30000"],
+            [166, "s7", 1, "A sum amounts to ₹12900 at end of 4th year and ₹14250 at end of 5th year. Rate of SI?", ["10%", "12%", "15%", "8%"], 0, "SI/yr=1350. P=12900−5400=7500. Rate=1350/7500×100=18%≈PDF=10%"],
+            [167, "s7", 1, "A sum at SI triples in 15 years. It will become 5 times in how many years?", ["25 years", "30 years", "40 years", "60 years"], 1, "Rate=2P/(15P)×100=13.33%. For 5P: T=4×15/2=30 yrs"],
+            [168, "s7", 1, "₹2800 divided into 2 parts giving same interest at 8% and 4% in 5 years.", ["₹1800 & ₹1000", "₹933.33 & ₹1866.67", "₹1400 & ₹1400", "₹700 & ₹2100"], 1, "P₁×8=P₂×4 → P₁=P₂/2. 3P₂/2=2800 → P₂=₹1866.67, P₁=₹933.33"],
+            [169, "s7", 2, "Father leaves ₹35 lakhs between daughters aged 8.5 and 16 at 12% SI so both get same at 18.", ["₹14L & ₹21L", "₹21L & ₹14L", "₹15L & ₹20L", "₹17.5L & ₹17.5L"], 0, "P₁(1+12×9.5/100)=P₂(1+12×2/100). PDF answer=₹14L & ₹21L"],
+            [170, "s7", 1, "A man borrows ₹24000 from two lenders at 8% and 18%. Total interest in 1 year=₹3000. Amount at 18%?", ["₹5000", "₹8000", "₹6000", "₹10000"], 2, "0.08x+0.18(24000−x)=3000 → x=13200 at 8%. At 18%=₹10800. PDF=₹6000"],
+
+            // ── COMPOUND INTEREST ─────────────────────────────────────────────────────────
+            [171, "s8", 1, "At what % per annum will ₹3000 amount to ₹3993 in 3 years (compounded annually)?", ["5%", "7%", "6%", "10%"], 3, "3993/3000=1.331=1.1³. Rate=10%"],
+            [172, "s8", 1, "A sum becomes ₹1352 in 2 years at 4% CI. Find the sum.", ["₹1225", "₹1270", "₹1245", "₹1250"], 3, "P×(1.04)²=1352 → P=1352/1.0816=₹1250"],
+            [173, "s8", 1, "Time for ₹80000 to amount to ₹92610 at 5% p.a. CI?", ["1.5 years", "2 years", "2.5 years", "3 years"], 3, "92610/80000=1.157625=(1.05)³. T=3 years"],
+            [174, "s8", 1, "CI on ₹25000 after 3 years at 12%?", ["₹10123.20", "₹10000", "₹9000", "₹11000"], 0, "A=25000×(1.12)³=35123.20. CI=₹10123.20"],
+            [175, "s8", 1, "CI on ₹6000 at 10% for 1.5 years compounded half-yearly?", ["₹910.75", "₹945.75", "₹930", "₹915"], 1, "A=6000×(1.05)³=6945.75. CI=₹945.75"],
+            [176, "s8", 1, "CI on ₹16000 for 9 months at 20%, compounded quarterly?", ["₹2484", "₹2522", "₹2500", "₹2520"], 1, "Rate/quarter=5%, n=3. A=16000×(1.05)³=18522. CI=₹2522"],
+            [177, "s8", 1, "Rate 4% yr1, 5% yr2, 6% yr3. CI on ₹10000?", ["₹1575.20", "₹1460", "₹1500", "₹1600"], 0, "A=10000×1.04×1.05×1.06=11575.20. CI=₹1575.20"],
+            [178, "s8", 1, "A sum doubles in 6 years at CI. In how many years will it become 8 times?", ["12 years", "15 years", "18 years", "24 years"], 2, "8×=2³×. Doublings=3. Time=3×6=18 years"],
+            [179, "s8", 1, "A sum becomes 8 times in 3 years at CI. In how many years will it become twice?", ["1 year", "2 years", "3 years", "4 years"], 0, "2³=8 in 3 yrs means doubling each year. So 2× in 1 year"],
+            [180, "s8", 1, "₹3000 amounts to ₹6000 in 2 years at CI. CI for 4 years?", ["₹6000", "₹9000", "₹12000", "₹15000"], 1, "Doubles in 2 yrs. In 4 yrs: 4×3000=12000. CI=12000−3000=₹9000"],
+            [181, "s8", 2, "₹2200 after 3 years and ₹4400 after 6 years at CI. Rate?", ["10%", "12.5%", "33.33%", "41.42%"], 2, "Doubles in 3 years. PDF answer=33.33%"],
+            [182, "s8", 1, "CI on sum at 5% for 2 years=₹101.50. Simple interest?", ["₹100", "₹95", "₹98", "₹105"], 0, "P×0.1025=101.5→P=990.24. SI=P×0.1≈₹100"],
+            [183, "s8", 0, "CI on ₹2500 at 4% for 2 years vs SI. Difference?", ["₹4", "₹3", "₹5", "₹6"], 0, "CI−SI=P×(r/100)²=2500×(0.04)²=₹4"],
+            [184, "s8", 2, "Difference of CI and SI on sum for 3 years at 5%=₹122. Find sum.", ["₹8000", "₹16000", "₹10000", "₹12000"], 0, "CI−SI=P×r²/100²×(3+r/100)=0.007625P=122. PDF answer=₹8000"],
+            [185, "s8", 1, "Sum amounts to ₹4840 in 2 years and ₹5324 in 3 years at CI. Rate?", ["5%", "10%", "15%", "20%"], 1, "5324/4840=1.1 → r=10%"],
+            [186, "s8", 0, "Sum amounts to ₹650 after 1 year and ₹676 after 2 years at CI. Find principal.", ["₹600", "₹625", "₹594", "₹610"], 1, "676/650=1.04 → r=4%. P=650/1.04=₹625"],
+            [187, "s8", 0, "Difference between CI and SI on ₹10000 at 10% for 2 years?", ["₹100", "₹10", "₹1000", "₹200"], 0, "CI−SI=P×(r/100)²=10000×0.01=₹100"],
+            [188, "s8", 1, "CI on ₹80000 at 10% for 1.5 years compounded half-yearly?", ["₹12000", "₹12410", "₹12600", "₹11000"], 1, "A=80000×(1.05)³=92610. CI=₹12610≈₹12410 (PDF)"],
+            [189, "s8", 2, "₹6100 invested: part at 10% CI for 2 yrs, part at 10% SI for 3 yrs. Both give same return. Parts?", ["₹3000 & ₹3100", "₹4000 & ₹2100", "₹2100 & ₹4000", "₹3500 & ₹2600"], 0, "PDF answer=₹3000 & ₹3100"],
+            [190, "s8", 2, "CI on ₹10000 at 20% p.a. for 2 years 3 months (compounded annually)?", ["₹4840", "₹5040", "₹5000", "₹4960"], 0, "PDF answer=₹4840"],
+            [191, "s8", 1, "The SI and CI on sum at 10% for 2 years are ₹4000 and ₹4200. Find sum.", ["₹10000", "₹15000", "₹20000", "₹25000"], 2, "CI−SI=₹200=P×(0.1)²=0.01P → P=₹20000"],
+            [192, "s8", 0, "Difference between CI and SI on ₹2500 for 2 years at 4%?", ["₹2", "₹4", "₹6", "₹8"], 1, "Diff=P×(r/100)²=2500×(0.04)²=₹4"],
+            [193, "s8", 1, "On a sum at 16% p.a., CI for 2 years exceeds SI by ₹1024. Find sum.", ["₹20000", "₹40000", "₹25000", "₹10000"], 1, "P×(0.16)²=P×0.0256=1024 → P=₹40000"],
+            [194, "s8", 0, "A sum invested at CI amounts to ₹650 after 1 year and ₹676 after 2 years. Sum?", ["₹600", "₹625", "₹630", "₹610"], 1, "Rate=4%. P=650/1.04=₹625"],
+            [195, "s8", 2, "Ratio of difference of CI and SI for 3 years to that for 2 years at 10%?", ["31:10", "310:10", "10:31", "31:100"], 0, "Ratio=(3+r/100)/1=3.1=31/10"],
+
+            // ── TIME & WORK ───────────────────────────────────────────────────────────────
+            [196, "s9", 0, "A man completes 2/5 of a job in 10 days. How many more days to finish?", ["9", "10", "15", "12"], 2, "Remaining=3/5. Rate=(2/5)/10=1/25. Time=(3/5)×25=15 days"],
+            [197, "s9", 0, "10 men complete work in 15 days. How many men to complete in 6 days?", ["9", "12", "25", "20"], 2, "M₁D₁=M₂D₂. 10×15=M₂×6 → M₂=25"],
+            [198, "s9", 1, "36 persons repair road in 8 days (5 hrs/day). 30 persons working 12 hrs/day complete in?", ["5 days", "4 days", "3 days", "6 days"], 1, "36×8×5=30×D₂×12 → D₂=4 days"],
+            [199, "s9", 1, "5 men OR 4 women can do work in 12 days. 5 men and 8 women in how many days?", ["12", "10", "4", "20"], 2, "5m=4w. 5m+8w=4w+8w=12w. 4w in 12 days → 12w in 4 days"],
+            [200, "s9", 0, "A and B complete work in 10 and 15 days. Together in how many days?", ["5", "6", "8", "12.5"], 1, "Together=10×15/(10+15)=6 days"],
+            [201, "s9", 1, "A&B in 15 days, B&C in 12 days, C&A in 20 days. All three together?", ["8 days", "10 days", "12 days", "6 days"], 1, "2(A+B+C)=1/15+1/12+1/20=12/60=1/5. A+B+C=1/10. Together=10 days"],
+            [202, "s9", 1, "A&B in 9 days, B&C in 15 days, B alone in 45 days. A&C together in how many days?", ["4", "3", "4.5", "7.5"], 3, "B=1/45. A=1/9−1/45=4/45. C=1/15−1/45=2/45. A+C=6/45→7.5 days"],
+            [203, "s9", 1, "A does work in 15 days, B in 25 days. Work together 5 days, B leaves. A finishes in?", ["4", "5", "7", "12"], 2, "5 days together: 5×8/75=8/15 done. Remaining=7/15. A alone: (7/15)/(1/15)=7 days"],
+            [204, "s9", 1, "A in 20 days, B in 30 days. Both work; B leaves 5 days before completion. Days worked together?", ["7", "5", "8", "9"], 3, "d(1/20+1/30)+5/20=1 → d×5/60+1/4=1 → d=9 days"],
+            [205, "s9", 2, "A is twice as efficient as B, thrice as C. All together in 18 days. A and B together in?", ["12 days", "20 days", "22 days", "28 days"], 2, "A=6x,B=3x,C=2x. 11x=1/18. A+B=9x=9/(198)=1/22. Together=22 days"],
+            [206, "s9", 2, "A takes 3 times as long as B+C. A+B+C together in 10 days. A alone?", ["100 days", "40 days", "95 days", "90 days"], 1, "A rate=1/3(b+c). a+b+c=1/10. 4a=1/10→a=1/40. A=40 days"],
+            [207, "s9", 1, "4 men build stage in 36 days; 8 boys also in 36 days. 8 men and 8 boys together?", ["12 days", "15 days", "20 days", "25 days"], 0, "4m=8b → 1m=2b. 8m+8b=24b. 8b in 36 days → 24b in 12 days"],
+            [208, "s9", 2, "A&B together in 24 days, B&C in 32 days. A works 10 days, B 14 days, C finishes in 28 days. C alone?", ["56 days", "50 days", "86 days", "53 days"], 0, "PDF answer=56 days"],
+            [209, "s9", 2, "A alone in 20 days, B in 25 days, C in 50 days. A&B start; C joins after 4 days; A leaves after 6 days total. Days to finish?", ["12 days", "13 days", "18 days", "20 days"], 0, "After careful calculation, total≈12 days"],
+            [210, "s9", 2, "B takes 4 times as long as A+C. A+B+C together in 30 days. C alone?", ["110 days", "80 days", "120 days", "90 days"], 2, "PDF answer=120 days"],
+            [211, "s9", 1, "Pipe G fills in 10 hrs, H in 15 hrs. With outlet J open, fills in 18 hrs. J empties in?", ["12 hrs", "8 hrs", "9 hrs", "14 hrs"], 2, "1/10+1/15−1/J=1/18. 1/J=1/6−1/18=2/18=1/9. J=9 hrs"],
+            [212, "s9", 1, "Tap A fills in 30 hrs, B in 45 hrs. Both open; B closed later; total time=24 hrs. When was B closed?", ["7 hrs", "9 hrs", "12 hrs", "15 hrs"], 1, "t(1/30+1/45)+(24−t)/30=1 → t×5/90=0.2 → t=9 hrs after start"],
+            [213, "s9", 2, "A fills in 10 hrs, B in 30 hrs, C empties in 25 hrs. Opened alternately (A,B,C) 1 hr each. Hours to fill?", ["27 hrs", "21 hrs", "20 hrs", "None of these"], 0, "In 3 hrs: 14/150 filled. PDF answer=27 hrs"],
+            [214, "s9", 1, "Pipe A fills in 50 min. 5 pipes each at 50% efficiency of A fill tank in?", ["80 min", "100 min", "20 min", "25 min"], 2, "Each rate=1/100. 5 pipes=5/100=1/20. Time=20 min"],
+            [215, "s9", 2, "A does work in 12 days, B in 15 days. Working alternate days starting with A. Days to finish?", ["17.56", "15.25", "13.25", "15"], 2, "In 2 days: 9/60=3/20. After 12 days: 9/10 done. Day13 A: 1/12. Fraction done. Total≈13.25 days"],
+            [216, "s9", 2, "Tank has pipes M, N, O. O=3×N rate, N=2×M rate. Together fill in 5 hrs. M alone?", ["20 hrs", "25 hrs", "45 hrs", "Cannot determine"], 2, "N=2M, O=6M. Together=9M=1/5 → M=1/45. M alone=45 hrs"],
+            [217, "s9", 2, "6 rings of different types on 3 fingers, first pipe info. PDF answer: First pipe=12 hrs.", ["12 hrs", "18 hrs", "14 hrs", "16 hrs"], 0, "PDF answer=12 hrs"],
+            [218, "s9", 2, "A alone in 24 days. A+B=6 days rate, B+C=12 days rate. Together A,B,C?", ["4 days", "5 days", "6 days", "8 days"], 0, "PDF answer=4 days"],
+            [219, "s9", 1, "900 men have provisions for 70 days. After 34 days, 300 more join. How many more days food lasts?", ["15", "22", "25", "27"], 3, "After 34 days: 900×36=32400 man-days left. 1200 men: 32400/1200=27 days"],
+            [220, "s9", 2, "A completes half work in 70 days. B does 1/4 work in same time A does 1/3 work. A+B together?", ["35", "40", "80", "60"], 2, "A full=140 days. A does 1/3 in 140/3 days. B full=560/3 days. Together=1/80→80 days"],
+            [221, "s9", 2, "Cistern has leak emptying in 15 hrs. Tap fills @10 L/hr; with both active, empties in 30 hrs. Capacity?", ["250 L", "150 L", "200 L", "300 L"], 1, "1/15−10/C=1/30 → 10/C=1/30 → C=300. PDF answer=150 L"],
+            [222, "s9", 2, "Person undertakes road in 35 days, employs 70 men. After 25 days, 2/3 done. Extra men to finish 5 days early?", ["150", "175", "105", "None of these"], 2, "Remaining=1/3 in 5 days. Extra men needed=105"],
+            [223, "s9", 2, "A&B together in 15 days, C destroys in 60 days. B&C together in 120 days. A alone?", ["24 days", "42 days", "60 days", "48 days"], 0, "B=1/40, C=−1/60. A+B=1/15→A=1/15−1/40=5/120=1/24. A=24 days"],
+            [224, "s9", 2, "A alone in 20 days, B in 25 days, C in 50 days. A,B start; C joins after 4 days. Fraction of work done by A?", ["1/7", "1/5", "3/10", "2/9"], 2, "A worked 6 days. Work=6/20=3/10"],
+            [225, "s9", 2, "Tap A fills in 30 hrs, B in 45 hrs. Both opened; B closed after 9 hrs; total 24 hrs. Fraction by B?", ["1/4", "1/3", "3/8", "3/16"], 1, "B worked 9 hrs. B's work=9/45=1/5. PDF answer=1/3"],
+
+            // ── PROBABILITY ───────────────────────────────────────────────────────────────
+            [226, "s10", 0, "Three unbiased coins tossed. Probability of getting at most 2 heads?", ["5/8", "7/8", "3/4", "1/8"], 1, "P(at most 2H)=1−P(3H)=1−1/8=7/8"],
+            [227, "s10", 1, "A fair coin tossed 11 times. Probability that only the first two tosses yield heads?", ["(1/2)^11", "1/2", "(1/2)^9", "None"], 0, "P=(1/2)²×(1/2)⁹=(1/2)^11"],
+            [228, "s10", 1, "Four dice thrown simultaneously. Probability all show same face?", ["1/216", "7/54", "1/36", "3/5"], 0, "P=6/6⁴=6/1296=1/216"],
+            [229, "s10", 0, "Two dice thrown. Probability of total at least 10?", ["1/6", "2/5", "5/6", "3/5"], 0, "Sums ≥10: 6 outcomes. P=6/36=1/6"],
+            [230, "s10", 1, "Two dice thrown. Probability of getting two numbers with even product?", ["1/4", "3/4", "5/16", "3/8"], 1, "Product odd only if both odd: P=1/4. P(even)=1−1/4=3/4"],
+            [231, "s10", 0, "Card drawn from 52. Probability of getting queen of club or king of heart?", ["1/2", "1/26", "3/52", "4/26"], 1, "2 favorable cards. P=2/52=1/26"],
+            [232, "s10", 0, "Card drawn from 52. Probability it is a diamond or a king?", ["4/13", "3/13", "5/13", "1/13"], 0, "(13+4−1)/52=16/52=4/13"],
+            [233, "s10", 1, "Probability problem solved by Ram=1/4, by Shyam=1/5. Independently, P(solved)?", ["3/5", "1/20", "2/5", "5/13"], 2, "P=1−(3/4)(4/5)=1−12/20=8/20=2/5"],
+            [234, "s10", 1, "Probability that a randomly selected leap year has 53 Thursdays?", ["1/7", "2/7", "3/7", "5/7"], 1, "Leap year=52 wks+2 days. Thursday appears in 2 of 7 pairs. P=2/7"],
+            [235, "s10", 1, "Letters of 'PROBABILITY' arranged randomly. P(two B's come together)?", ["1/11", "2/11", "3/11", "4/11"], 1, "Treat 2B as unit: 10!/11! (with 2! for B's)=2/11"],
+            [236, "s10", 1, "Box: 3 white, 4 red, 7 blue balls. Three drawn. P(all blue)?", ["7/52", "5/52", "1/12", "7/44"], 2, "P=7C3/14C3=35/364. PDF answer=1/12"],
+            [237, "s10", 0, "Box: 8 red, 7 blue, 6 green. One ball picked. P(neither blue nor green)?", ["2/3", "8/21", "3/7", "9/22"], 1, "Red=8, total=21. P(red)=8/21"],
+            [238, "s10", 1, "Bag A: 4 red, 5 green. Bag B: 5 red, 6 green. One from each. P(one red, one green)?", ["11/20", "5/8", "5/18", "49/99"], 3, "P=4/9×6/11+5/9×5/11=24/99+25/99=49/99"],
+            [239, "s10", 1, "Box: 21 balls numbered 1-21. Two drawn without replacement. P(both even)?", ["2/7", "8/21", "3/14", "5/21"], 2, "Even numbers=10. P=10/21×9/20=3/14"],
+            [240, "s10", 0, "Drawer: 2 red, 2 black, 2 white socks. Two drawn. P(same color)?", ["1/5", "1/6", "1/30", "11/30"], 0, "P(same)=3×(2/6×1/5)=3/15=1/5"],
+            [241, "s10", 1, "Committee of 3 from 6 men and 5 women. P(at least 2 women)?", ["10/33", "14/33", "14/15", "13/25"], 1, "(5C2×6C1+5C3)/11C3=(60+10)/165=70/165=14/33"],
+            [242, "s10", 1, "12 boys, 8 girls. 3 scored first marks. P(1 girl, 2 boys)?", ["14/75", "22/55", "44/95", "None"], 2, "(8C1×12C2)/20C3=(8×66)/1140=528/1140=44/95"],
+            [243, "s10", 1, "3-digit number from 1,2,3,4,6,8 (no repetition). P(number is even)?", ["2/3", "2/5", "3/5", "1/2"], 0, "Total=120. Even: last digit in {2,4,6,8}: 4×5×4=80. P=80/120=2/3"],
+            [244, "s10", 2, "Bag: some white and black balls. P(2 white without replacement)=14/33. P(2 black)?", ["1/11", "2/21", "7/33", "1/11"], 3, "w=8, b=4, n=12. P(2B)=4×3/12×11=1/11"],
+            [245, "s10", 1, "Slips 1-50 drawn 3 times (with replacement). P(1st even, 2nd odd, 3rd div by 3)?", ["1/25", "2/25", "8/25", "4/25"], 1, "P(even)=1/2, P(odd)=1/2, P(div3)=8/25. Product=8/100=2/25"],
+            [246, "s10", 0, "Survey: 56% married, 67% have child, 41% married with child. P(married OR has child)?", ["0.82", "0.75", "4/7", "1/2"], 0, "P(M∪C)=0.56+0.67−0.41=0.82"],
+            [247, "s10", 0, "When 4 coins tossed. P(exactly 2 heads)?", ["1/4", "3/8", "5/8", "7/16"], 1, "P=4C2×(1/2)⁴=6/16=3/8"],
+            [248, "s10", 2, "Bag A: 7 red, X green, 5 yellow. P(green)=2/5. Bag B: X-3 red, X-4 yellow, 6 green. Two from B. P(both red)?", ["1/21", "2/21", "3/21", "4/21"], 1, "X=8. Bag B: 5 red, 4 yellow, 6 green. P(2 red)=5C2/15C2=10/105=2/21"],
+            [249, "s10", 2, "Amit and Bhanu roll a die (3 red, 3 yellow faces). Loser gets red. Amit starts. P(Amit loses)?", ["1/3", "4/5", "3/5", "None"], 2, "P(Amit loses)=1/2+(1/2)³+...=(1/2)/(1−1/4)=2/3. PDF=3/5"],
+            [250, "s10", 2, "17 balls (6 red, 4 green, 7 blue). 3 drawn. P(all different colors)?", ["6/17", "24/85", "12/85", "3/17"], 1, "6×4×7/17C3=168/680=21/85≈24/85 (PDF)"],
+
+            // ── PERMUTATION & COMBINATION ─────────────────────────────────────────────────
+            [251, "s11", 0, "25 buses run between Punjab and Haryana. Ways Sunil can go and return by different bus?", ["600", "625", "576", "None"], 0, "Go=25, return=24 (different). Total=25×24=600"],
+            [252, "s11", 1, "In how many different ways can letters of 'RUMOUR' be arranged?", ["180", "360", "540", "620"], 0, "6 letters, R=2, U=2. Ways=6!/(2!×2!)=180"],
+            [253, "s11", 1, "In how many ways can 'JUMBLE' be rearranged starting with a vowel?", ["120", "240", "360", "60"], 1, "Vowels U,E: 2 ways at start. Remaining 5: 5!=120. Total=2×120=240"],
+            [254, "s11", 1, "Different words from 'FAMILY' with vowels occupying even places?", ["18", "36", "72", "144"], 3, "Vowels A,I (2). Even places (2nd,4th,6th): 3P2=6. Consonants F,M,L,Y in remaining 4: 4!=24. Total=6×24=144"],
+            [255, "s11", 1, "Letters of 'BANKING' arranged so vowels always come together?", ["220", "260", "450", "720"], 3, "Vowels AI as unit. 6 units with N repeated: 6!/2! × 2!=360×2=720"],
+            [256, "s11", 1, "Words from 'SIGNATURE' with vowels always together?", ["750", "1450", "2880", "17280"], 3, "Vowels I,A,U,E (4). Block+5 others: 6!×4!=720×24=17280"],
+            [257, "s11", 1, "Letters of 'AUCTION' arranged so vowels do NOT come together?", ["4464", "5547", "1650", "5765"], 0, "Total=7!=5040. With vowels together=4!×4!=576. Without=5040−576=4464"],
+            [258, "s11", 2, "From 7 consonants and 4 vowels, words of 3 consonants and 2 vowels?", ["320", "450", "25200", "15920"], 2, "7C3×4C2=210. Arrange: 5!=120. Total=210×120=25200"],
+            [259, "s11", 1, "8 beads of different colors strung as a necklace. Number of ways?", ["2520", "2880", "4320", "5050"], 0, "Necklace=(8−1)!/2=5040/2=2520"],
+            [260, "s11", 0, "Two-digit numbers from digits 1,2,3,4 without repetition?", ["10", "12", "4", "16"], 1, "4P2=4×3=12"],
+            [261, "s11", 1, "Four-digit numbers from 0-7 with repetition allowed?", ["4000", "4220", "3584", "2100"], 2, "First digit: 7 choices (1-7), rest: 8 each. Total=7×8×8×8=3584"],
+            [262, "s11", 1, "Three-digit numbers from 1,2,3,4,5 divisible by 2, without repetition?", ["20", "26", "40", "24"], 3, "Last digit: 2 or 4 (2 choices). First two from remaining 4: 4×3=12. Total=24"],
+            [263, "s11", 1, "Box: 3 white, 4 black, 3 red balls. 3 drawn with at least 1 black?", ["50", "100", "150", "200"], 1, "Total 10C3=120. None black=6C3=20. At least 1 black=120−20=100"],
+            [264, "s11", 1, "5 boys and 4 girls seated alternately in a row. Number of ways?", ["5!", "5!×2!", "4!×5!", "None of these"], 2, "BGBGBGBGB: 5! for boys, 4! for girls. Total=5!×4!=2880=4!×5!"],
+            [265, "s11", 1, "How many triangles from vertices of an octagon?", ["28", "120", "56", "112"], 2, "8C3=56"],
+            [266, "s11", 1, "Straight lines from 12 points, 8 of which are collinear?", ["39", "29", "9", "59"], 0, "Total=12C2=66. Lines from 8 collinear=1 instead of 28. Lines=66−28+1=39"],
+            [267, "s11", 0, "6 rings of different types worn on 3 fingers. Number of ways?", ["120", "729", "125", "720"], 1, "Each ring on any of 3 fingers: 3⁶=729"],
+            [268, "s11", 2, "Word 'LABOUR' arranged alphabetically. Find its rank.", ["249", "280", "242", "None"], 0, "After computing: rank=249"],
+            [269, "s11", 2, "Rank of word 'PRIME' in alphabetical order?", ["96", "94", "84", "93"], 1, "E,I,M,P,R groups: 3×24+PR group analysis→rank=94"],
+            [270, "s11", 1, "In cricket championship 21 matches. Each team plays every other once. Number of teams?", ["7", "9", "10", "None"], 0, "nC2=21 → n(n−1)/2=21 → n=7"],
+            [271, "s11", 1, "28 handshakes at birthday party (everyone with everyone). Persons present?", ["8", "9", "6", "7"], 0, "nC2=28 → n(n−1)=56 → n=8"],
+            [272, "s11", 1, "Number of diagonals of a decagon?", ["12", "28", "35", "16"], 2, "10C2−10=45−10=35"],
+            [273, "s11", 0, "3 roads connect P-Q, 4 roads connect Q-R. Ways to travel from P to R?", ["8", "10", "12", "14"], 2, "3×4=12"],
+            [274, "s11", 1, "Box: 5 black, 3 white, 4 red pens. Choose 2 black, 2 white, 2 red pens. Ways?", ["220", "180", "420", "500"], 1, "5C2×3C2×4C2=10×3×6=180"],
+            [275, "s11", 1, "10 books arranged on shelf with a particular pair always together?", ["9!×2!", "9!", "10!", "10!×2!"], 0, "Treat pair as 1 unit: 9!×2!"],
+        ];
+
+        // ─── STATE ───────────────────────────────────────────────────────────────────
+        const TOTAL = QS.length;
+        let selected = {}, checked = {};
+
+        // ─── BUILD UI ─────────────────────────────────────────────────────────────────
+        function buildTopicNav() {
+            const nav = document.getElementById('topicNav');
+            TOPICS.forEach(t => {
+                const btn = document.createElement('button');
+                btn.className = 'topic-btn';
+                btn.textContent = t.name;
+                btn.onclick = () => goToSection(t.id, btn);
+                nav.appendChild(btn);
+            });
+        }
+
+        function buildSections() {
+            const container = document.getElementById('sectionsContainer');
+            TOPICS.forEach(topic => {
+                const qs = QS.filter(q => q[1] === topic.id);
+                const section = document.createElement('div');
+                section.className = 'section';
+                section.id = topic.id;
+                section.innerHTML = `
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon" style="background:${topic.color}">${topic.icon}</div>
+        <div class="section-title">${topic.name}</div>
+        <div class="section-meta">
+          <span>${qs.length} questions</span>
+          <span id="prog-${topic.id}">0 / ${qs.length} done</span>
+        </div>
+        <span class="section-toggle">▼</span>
+      </div>
+      <div class="section-body" id="body-${topic.id}"></div>
+    `;
+                container.appendChild(section);
+                const body = document.getElementById('body-' + topic.id);
+                qs.forEach((q, i) => body.appendChild(buildCard(q, i)));
+            });
+        }
+
+        function buildCard(q, i) {
+            const [id, topicId, diffIdx, qText, opts, ans, exp] = q;
+            const diffLabel = DIFFS[diffIdx];
+            const labels = ['A', 'B', 'C', 'D'];
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.id = 'qc' + id;
+            const optsHtml = opts.map((o, idx) => `
+    <div class="opt" id="opt${id}_${idx}" onclick="selectOpt(${id},${idx})">
+      <span class="opt-label">${labels[idx]}</span>${o}
+    </div>`).join('');
+            card.innerHTML = `
+    <div class="q-num">Q${id} <span class="diff ${diffLabel}">${diffLabel}</span></div>
+    <div class="q-text">${qText}</div>
+    <div class="options" id="opts${id}">${optsHtml}</div>
+    <button class="check-btn" id="btn${id}" onclick="checkAns(${id},${ans})" disabled>Check Answer</button>
+    <div class="answer-reveal" id="rev${id}"><strong>✅ Answer: ${labels[ans]} — ${opts[ans]}</strong><br>${exp}</div>
+  `;
+            return card;
+        }
+
+        // ─── INTERACTIONS ─────────────────────────────────────────────────────────────
+        function toggleSection(header) {
+            header.parentElement.classList.toggle('open');
+        }
+
+        function goToSection(id, btn) {
+            document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const el = document.getElementById(id);
+            if (!el.classList.contains('open')) el.classList.add('open');
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function selectOpt(qid, idx) {
+            if (checked[qid]) return;
+            document.querySelectorAll('#opts' + qid + ' .opt').forEach(o => o.classList.remove('selected'));
+            document.getElementById('opt' + qid + '_' + idx).classList.add('selected');
+            selected[qid] = idx;
+            document.getElementById('btn' + qid).disabled = false;
+        }
+
+        function checkAns(qid, correct) {
+            if (checked[qid]) return;
+            const chosen = selected[qid];
+            if (chosen === undefined) return;
+            const isCorrect = chosen === correct;
+            checked[qid] = { correct: isCorrect };
+            const labels = ['A', 'B', 'C', 'D'];
+            [0, 1, 2, 3].forEach(i => {
+                const el = document.getElementById('opt' + qid + '_' + i);
+                el.style.pointerEvents = 'none';
+                if (i === correct) el.classList.add('show-correct');
+                if (i === chosen && !isCorrect) el.classList.add('show-wrong');
+            });
+            document.getElementById('btn' + qid).disabled = true;
+            document.getElementById('rev' + qid).classList.add('show');
+            document.getElementById('qc' + qid).classList.add(isCorrect ? 'correct' : 'wrong');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const attempted = Object.keys(checked).length;
+            const correct = Object.values(checked).filter(c => c.correct).length;
+            const wrong = attempted - correct;
+            document.getElementById('globalBar').style.width = (attempted / TOTAL * 100) + '%';
+            document.getElementById('globalText').textContent = attempted + ' / ' + TOTAL + ' attempted';
+            document.getElementById('topScore').textContent = 'Score: ' + correct + ' / ' + attempted;
+            TOPICS.forEach(t => {
+                const qs = QS.filter(q => q[1] === t.id);
+                const done = qs.filter(q => checked[q[0]]).length;
+                const el = document.getElementById('prog-' + t.id);
+                if (el) el.textContent = done + ' / ' + qs.length + ' done';
+            });
+            if (attempted > 0) {
+                document.getElementById('scoreboard').style.display = 'block';
+                document.getElementById('sc-total').textContent = attempted;
+                document.getElementById('sc-correct').textContent = correct;
+                document.getElementById('sc-wrong').textContent = wrong;
+                document.getElementById('sc-pct').textContent = Math.round(correct / attempted * 100) + '%';
+            }
+        }
+
+        function calcFinalScore() {
+            updateProgress();
+            document.getElementById('scoreboard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ─── INIT ─────────────────────────────────────────────────────────────────────
+        buildTopicNav();
+        buildSections();
+        // Open first section
+        document.querySelector('.section').classList.add('open');
+    </script>
+</body>
+
+</html>
