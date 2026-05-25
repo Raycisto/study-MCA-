@@ -33,10 +33,80 @@
             --unanswered: #6C5CE7;
             --formula-blue: #EBF5FF;
             --formula-border: #2563eb;
+            --formula-text: #1e3a5f;
+            --formula-heading: #1e40af;
             --on-primary: #ffffff;
             --secondary-container: #d6e2e6;
             --on-secondary-container: #596468;
             --shadow-soft: 0px 4px 20px rgba(24, 31, 33, 0.05);
+            --topbar-bg: rgba(252, 249, 248, 0.85);
+            --tip-bg: #faf5ff;
+            --tip-border: #e9d5ff;
+            --tip-text: #581c87;
+            --tip-heading: #7c3aed;
+            --answer-bg: #f0fdf4;
+            --answer-text: #14532d;
+            --answer-strong: #166534;
+            --correct-bg: #f0fdf4;
+            --wrong-bg: #fef2f2;
+            --easy-bg: #dcfce7;
+            --easy-text: #166534;
+            --medium-bg: #fef3c7;
+            --medium-text: #92400e;
+            --hard-bg: #fecaca;
+            --hard-text: #991b1b;
+            --em-bg: #ede9fe;
+            --em-text: #5b21b6;
+        }
+
+        /* DARK MODE */
+        [data-theme="dark"] {
+            --bg: #111214;
+            --surface: #1a1c1e;
+            --surface2: #222426;
+            --surface-container: #1e2022;
+            --surface-container-high: #282a2c;
+            --surface-container-highest: #323436;
+            --border: #3a3d40;
+            --border-light: #2e3133;
+            --primary: #e8eaed;
+            --primary-container: #c8cacd;
+            --accent: #a29bfe;
+            --accent2: #ff6b6b;
+            --accent3: #51cf66;
+            --accent4: #74b9ff;
+            --text: #e0e2e4;
+            --muted: #9ca0a3;
+            --muted-light: #6d7275;
+            --correct: #51cf66;
+            --wrong: #ff6b6b;
+            --unanswered: #a29bfe;
+            --formula-blue: #1a2332;
+            --formula-border: #4a8af5;
+            --formula-text: #aecbfa;
+            --formula-heading: #74b9ff;
+            --on-primary: #111214;
+            --secondary-container: #2a3438;
+            --on-secondary-container: #9cb0b8;
+            --shadow-soft: 0px 4px 20px rgba(0, 0, 0, 0.25);
+            --topbar-bg: rgba(17, 18, 20, 0.9);
+            --tip-bg: #1f1a2e;
+            --tip-border: #3d2e6b;
+            --tip-text: #d4b8ff;
+            --tip-heading: #b794f6;
+            --answer-bg: #132318;
+            --answer-text: #a3d9b1;
+            --answer-strong: #6fdc8c;
+            --correct-bg: #132318;
+            --wrong-bg: #2a1215;
+            --easy-bg: #132318;
+            --easy-text: #6fdc8c;
+            --medium-bg: #2a2210;
+            --medium-text: #f5c842;
+            --hard-bg: #2a1215;
+            --hard-text: #ff8a8a;
+            --em-bg: #261e3d;
+            --em-text: #c9b8f0;
         }
 
         * {
@@ -311,11 +381,11 @@
             font-family: 'Inter', sans-serif;
             font-size: 13px;
             line-height: 1.9;
-            color: #1e3a5f;
+            color: var(--formula-text);
         }
 
         .formula-box strong {
-            color: #1e40af;
+            color: var(--formula-heading);
             font-family: 'Inter', sans-serif;
             display: flex;
             align-items: center;
@@ -342,12 +412,12 @@
 
         .question-card.correct {
             border-color: var(--correct) !important;
-            background: #f0fdf4 !important;
+            background: var(--correct-bg) !important;
         }
 
         .question-card.wrong {
             border-color: var(--wrong) !important;
-            background: #fef2f2 !important;
+            background: var(--wrong-bg) !important;
         }
 
         .q-num {
@@ -373,18 +443,18 @@
         }
 
         .easy {
-            background: #dcfce7;
-            color: #166534;
+            background: var(--easy-bg);
+            color: var(--easy-text);
         }
 
         .medium {
-            background: #fef3c7;
-            color: #92400e;
+            background: var(--medium-bg);
+            color: var(--medium-text);
         }
 
         .hard {
-            background: #fecaca;
-            color: #991b1b;
+            background: var(--hard-bg);
+            color: var(--hard-text);
         }
 
         .q-text {
@@ -398,10 +468,10 @@
 
         .q-text em {
             font-style: normal;
-            background: #ede9fe;
+            background: var(--em-bg);
             padding: 2px 6px;
             border-radius: 4px;
-            color: #5b21b6;
+            color: var(--em-text);
             font-weight: 600;
         }
 
@@ -444,14 +514,14 @@
 
         .opt.show-correct {
             border-color: var(--correct) !important;
-            background: #f0fdf4 !important;
-            color: #166534 !important;
+            background: var(--correct-bg) !important;
+            color: var(--easy-text) !important;
         }
 
         .opt.show-wrong {
             border-color: var(--wrong) !important;
-            background: #fef2f2 !important;
-            color: #991b1b !important;
+            background: var(--wrong-bg) !important;
+            color: var(--hard-text) !important;
         }
 
         .opt-label {
@@ -516,14 +586,14 @@
 
         .answer-reveal {
             display: none;
-            background: #f0fdf4;
+            background: var(--answer-bg);
             border-left: 3px solid var(--correct);
             border-radius: 0 8px 8px 0;
             padding: 14px 16px;
             margin-top: 12px;
             font-size: 14px;
             line-height: 1.7;
-            color: #14532d;
+            color: var(--answer-text);
         }
 
         .answer-reveal.show {
@@ -531,23 +601,23 @@
         }
 
         .answer-reveal strong {
-            color: #166534;
+            color: var(--answer-strong);
         }
 
         /* THEORY TIPS */
         .tip-box {
-            background: #faf5ff;
-            border: 1px solid #e9d5ff;
+            background: var(--tip-bg);
+            border: 1px solid var(--tip-border);
             border-radius: 12px;
             padding: 16px 18px;
             margin-bottom: 20px;
             font-size: 13px;
             line-height: 1.9;
-            color: #581c87;
+            color: var(--tip-text);
         }
 
         .tip-box h4 {
-            color: #7c3aed;
+            color: var(--tip-heading);
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -653,7 +723,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(252, 249, 248, 0.85);
+            background: var(--topbar-bg);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-light);
@@ -694,7 +764,7 @@
             transition: all 0.2s ease;
         }
 
-        /* Custom scrollbar for light theme */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -707,6 +777,146 @@
         }
         ::-webkit-scrollbar-thumb:hover {
             background: var(--muted-light);
+        }
+
+        /* Dark mode toggle */
+        .dark-toggle {
+            background: var(--surface-container-high);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        .dark-toggle:hover {
+            background: var(--border);
+            transform: scale(1.05);
+        }
+
+        /* Theme transition */
+        body, .topbar, .section, .question-card, .stat-pill, .score-card,
+        #scoreboard, .formula-box, .tip-box, .answer-reveal, .opt {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .wrapper {
+                padding: 12px;
+            }
+            header {
+                padding: 24px 12px 16px;
+            }
+            header h1 {
+                font-size: 26px;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .stat-pill {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+            .topic-nav {
+                gap: 6px;
+                padding: 0 4px;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                padding-bottom: 4px;
+            }
+            .topic-nav::-webkit-scrollbar {
+                display: none;
+            }
+            .topic-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+                flex-shrink: 0;
+            }
+            .section-header {
+                padding: 14px 16px;
+                gap: 10px;
+            }
+            .section-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 15px;
+            }
+            .section-body {
+                padding: 0 16px 16px;
+            }
+            .section-meta span:first-child {
+                display: none;
+            }
+            .question-card {
+                padding: 14px;
+                margin-bottom: 10px;
+            }
+            .q-text {
+                font-size: 14px;
+            }
+            .opt {
+                padding: 11px 12px;
+                font-size: 13px;
+                min-height: 44px;
+            }
+            .score-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .topbar {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            .topbar-title {
+                font-size: 13px;
+            }
+            .topbar-score {
+                font-size: 11px;
+                padding: 5px 10px;
+            }
+            .topbar-progress {
+                max-width: 160px;
+            }
+            .submit-btn {
+                width: 100%;
+                max-width: 320px;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+            .formula-box, .tip-box {
+                font-size: 12px;
+                padding: 12px 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+            .topbar-title {
+                display: none;
+            }
+            .dark-toggle {
+                width: 34px;
+                height: 34px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -723,6 +933,7 @@
                 id="globalText">0 / 105 attempted</div>
         </div>
         <div class="topbar-score" id="topScore">Score: 0 / 0</div>
+        <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
     </div>
 
     <div class="wrapper">
@@ -763,15 +974,14 @@
             </div>
         </div>
 
-        <!-- TOPIC NAV -->
-        <div class="topic-nav">
-            <button class="topic-btn active" onclick="scrollTo('s1')">1. Number System</button>
-            <button class="topic-btn" onclick="scrollTo('s2')">2. Percentage</button>
-            <button class="topic-btn" onclick="scrollTo('s3')">3. Profit & Loss</button>
-            <button class="topic-btn" onclick="scrollTo('s4')">4. SI & CI</button>
-            <button class="topic-btn" onclick="scrollTo('s5')">5. P & C</button>
-            <button class="topic-btn" onclick="scrollTo('s6')">6. Probability</button>
-            <button class="topic-btn" onclick="scrollTo('s7')">7. Time & Work</button>
+        <div class="topic-nav" id="topicNav">
+            <button class="topic-btn active" onclick="scrollToSection('s1', this)">1. Number System</button>
+            <button class="topic-btn" onclick="scrollToSection('s2', this)">2. Percentage</button>
+            <button class="topic-btn" onclick="scrollToSection('s3', this)">3. Profit &amp; Loss</button>
+            <button class="topic-btn" onclick="scrollToSection('s4', this)">4. SI &amp; CI</button>
+            <button class="topic-btn" onclick="scrollToSection('s5', this)">5. P &amp; C</button>
+            <button class="topic-btn" onclick="scrollToSection('s6', this)">6. Probability</button>
+            <button class="topic-btn" onclick="scrollToSection('s7', this)">7. Time &amp; Work</button>
         </div>
 
         <!-- =================== SECTION 1: NUMBER SYSTEM =================== -->
@@ -2540,11 +2750,40 @@
             section.classList.toggle('open');
         }
 
-        function scrollTo(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function scrollToSection(id, btn) {
+            const target = document.getElementById(id);
+            if (!target) return;
+            // Open the section if it's closed
+            if (!target.classList.contains('open')) {
+                target.classList.add('open');
+            }
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             document.querySelectorAll('.topic-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            if (btn) btn.classList.add('active');
         }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            const toggleBtn = document.getElementById('darkToggle');
+            toggleBtn.textContent = isDark ? '🌙' : '☀️';
+            toggleBtn.title = isDark ? 'Switch to dark mode' : 'Switch to light mode';
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        // Restore saved theme on load
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                const toggleBtn = document.getElementById('darkToggle');
+                if (toggleBtn) {
+                    toggleBtn.textContent = '☀️';
+                    toggleBtn.title = 'Switch to light mode';
+                }
+            }
+        })();
 
         function selectOpt(qid, choice) {
             if (checked[qid]) return; // already answered
