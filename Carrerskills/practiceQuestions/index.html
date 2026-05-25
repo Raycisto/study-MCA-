@@ -25,6 +25,38 @@
             --shadow: 0 4px 20px rgba(24, 31, 33, .05);
             --sc: #d6e2e6;
             --sct: #596468;
+            --correct-bg: #f0fdf4;
+            --wrong-bg: #fef2f2;
+            --correct-text: #166534;
+            --wrong-text: #991b1b;
+            --answer-bg: #f8fafc;
+            --prog-bar-bg: #e5e7eb;
+            --topic-btn-bg: #eae7e7;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f1114;
+            --surface: #1a1d23;
+            --surface2: #22262e;
+            --border: #2e3340;
+            --border-light: #2a2f3a;
+            --primary: #e8ecf0;
+            --accent: #a78bfa;
+            --text: #e0e4ea;
+            --muted: #9ca3af;
+            --muted-light: #6b7280;
+            --correct: #22c55e;
+            --wrong: #ef4444;
+            --shadow: 0 4px 20px rgba(0, 0, 0, .25);
+            --sc: #2a3040;
+            --sct: #8b95a5;
+            --correct-bg: #052e16;
+            --wrong-bg: #2d0a0a;
+            --correct-text: #86efac;
+            --wrong-text: #fca5a5;
+            --answer-bg: #1e222a;
+            --prog-bar-bg: #2e3340;
+            --topic-btn-bg: #22262e;
         }
 
         * {
@@ -38,7 +70,8 @@
             color: var(--text);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden
+            overflow-x: hidden;
+            transition: background .35s ease, color .35s ease
         }
 
         .wrapper {
@@ -104,7 +137,7 @@
         }
 
         .prog-bar-bg {
-            background: #e5e7eb;
+            background: var(--prog-bar-bg);
             border-radius: 9999px;
             height: 8px;
             overflow: hidden
@@ -185,7 +218,7 @@
         }
 
         .topic-btn {
-            background: #eae7e7;
+            background: var(--topic-btn-bg);
             border: 1px solid transparent;
             color: var(--muted);
             border-radius: 9999px;
@@ -331,12 +364,12 @@
 
         .question-card.correct {
             border-color: var(--correct) !important;
-            background: #f0fdf4 !important
+            background: var(--correct-bg) !important
         }
 
         .question-card.wrong {
             border-color: var(--wrong) !important;
-            background: #fef2f2 !important
+            background: var(--wrong-bg) !important
         }
 
         .q-num {
@@ -372,6 +405,21 @@
         .hard {
             background: #fecaca;
             color: #991b1b
+        }
+
+        [data-theme="dark"] .easy {
+            background: #052e16;
+            color: #86efac
+        }
+
+        [data-theme="dark"] .medium {
+            background: #422006;
+            color: #fcd34d
+        }
+
+        [data-theme="dark"] .hard {
+            background: #450a0a;
+            color: #fca5a5
         }
 
         .q-text {
@@ -422,14 +470,14 @@
 
         .opt.show-correct {
             border-color: var(--correct) !important;
-            background: #f0fdf4 !important;
-            color: #166534 !important
+            background: var(--correct-bg) !important;
+            color: var(--correct-text) !important
         }
 
         .opt.show-wrong {
             border-color: var(--wrong) !important;
-            background: #fef2f2 !important;
-            color: #991b1b !important
+            background: var(--wrong-bg) !important;
+            color: var(--wrong-text) !important
         }
 
         .opt-label {
@@ -467,7 +515,7 @@
         .answer-reveal {
             display: none;
             margin-top: 12px;
-            background: #f8fafc;
+            background: var(--answer-bg);
             border-left: 3px solid var(--correct);
             border-radius: 0 8px 8px 0;
             padding: 12px 15px;
@@ -512,10 +560,259 @@
             font-size: 13px;
             line-height: 1.8
         }
+
+        /* ─── DARK MODE TOGGLE ─────────────────────────────────── */
+        .dark-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px)
+        }
+
+        .dark-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(0,0,0,.2)
+        }
+
+        .dark-toggle:active {
+            transform: scale(.95)
+        }
+
+        .dark-toggle .icon-sun,
+        .dark-toggle .icon-moon {
+            position: absolute;
+            transition: opacity .3s ease, transform .3s ease
+        }
+
+        .dark-toggle .icon-sun {
+            opacity: 1;
+            transform: rotate(0deg)
+        }
+
+        .dark-toggle .icon-moon {
+            opacity: 0;
+            transform: rotate(-90deg)
+        }
+
+        [data-theme="dark"] .dark-toggle .icon-sun {
+            opacity: 0;
+            transform: rotate(90deg)
+        }
+
+        [data-theme="dark"] .dark-toggle .icon-moon {
+            opacity: 1;
+            transform: rotate(0deg)
+        }
+
+        [data-theme="dark"] .dark-toggle {
+            box-shadow: 0 4px 20px rgba(0,0,0,.4);
+            border-color: var(--border)
+        }
+
+        /* ─── MOBILE RESPONSIVE ────────────────────────────────── */
+        @media (max-width: 640px) {
+            .wrapper {
+                padding: 12px
+            }
+
+            header {
+                padding: 24px 12px 18px
+            }
+
+            header h1 {
+                font-size: 24px
+            }
+
+            header p {
+                font-size: 13px;
+                margin-bottom: 16px
+            }
+
+            .badge {
+                font-size: 11px;
+                padding: 5px 12px
+            }
+
+            .prog-wrap {
+                padding: 12px 14px;
+                border-radius: 10px
+            }
+
+            .prog-top {
+                font-size: 12px
+            }
+
+            #scoreboard {
+                padding: 14px 16px;
+                border-radius: 10px
+            }
+
+            #scoreboard h3 {
+                font-size: 16px
+            }
+
+            .score-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px
+            }
+
+            .score-card .num {
+                font-size: 22px
+            }
+
+            .topic-nav {
+                gap: 6px;
+                margin-bottom: 14px;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                padding-bottom: 6px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none
+            }
+
+            .topic-nav::-webkit-scrollbar {
+                display: none
+            }
+
+            .topic-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+                flex-shrink: 0
+            }
+
+            .section {
+                border-radius: 12px;
+                margin-bottom: 10px
+            }
+
+            .section-header {
+                padding: 14px 14px;
+                gap: 10px
+            }
+
+            .section-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+                border-radius: 8px
+            }
+
+            .section-title {
+                font-size: 15px
+            }
+
+            .section-meta {
+                font-size: 11px
+            }
+
+            .section-body {
+                padding: 0 14px 14px
+            }
+
+            .question-card {
+                padding: 14px;
+                border-radius: 10px;
+                margin-bottom: 10px
+            }
+
+            .q-text {
+                font-size: 14px;
+                line-height: 1.6;
+                margin-bottom: 12px
+            }
+
+            .q-num {
+                font-size: 11px;
+                margin-bottom: 6px
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+                gap: 6px
+            }
+
+            .opt {
+                padding: 10px 12px;
+                font-size: 13px;
+                border-radius: 8px
+            }
+
+            .check-btn {
+                width: 100%;
+                padding: 11px 16px;
+                font-size: 13px
+            }
+
+            .answer-reveal {
+                padding: 10px 12px;
+                font-size: 12px;
+                line-height: 1.55
+            }
+
+            .submit-btn {
+                padding: 12px 30px;
+                font-size: 14px;
+                border-radius: 10px
+            }
+
+            .dark-toggle {
+                width: 44px;
+                height: 44px;
+                bottom: 16px;
+                right: 16px;
+                font-size: 18px
+            }
+
+            footer {
+                font-size: 12px;
+                padding: 16px 12px
+            }
+        }
+
+        @media (max-width: 380px) {
+            header h1 {
+                font-size: 20px
+            }
+
+            .score-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px
+            }
+
+            .score-card {
+                padding: 10px
+            }
+
+            .score-card .num {
+                font-size: 20px
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+    </button>
+
     <div class="wrapper">
 
         <header>
@@ -958,7 +1255,16 @@
 
         // ─── INTERACTIONS ─────────────────────────────────────────────────────────────
         function toggleSection(header) {
-            header.parentElement.classList.toggle('open');
+            const section = header.parentElement;
+            const isOpen = section.classList.contains('open');
+
+            // Close all other sections (accordion behavior)
+            document.querySelectorAll('.section.open').forEach(s => {
+                if (s !== section) s.classList.remove('open');
+            });
+
+            // Toggle the clicked section
+            section.classList.toggle('open');
         }
 
         function goToSection(id, btn) {
@@ -1022,6 +1328,22 @@
             updateProgress();
             document.getElementById('scoreboard').scrollIntoView({ behavior: 'smooth' });
         }
+
+        // ─── DARK MODE ────────────────────────────────────────────────────────────────
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+
+        // Restore saved theme
+        (function() {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
 
         // ─── INIT ─────────────────────────────────────────────────────────────────────
         buildTopicNav();
